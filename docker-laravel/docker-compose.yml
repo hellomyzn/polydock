@@ -1,0 +1,7 @@
+version: "3.8"
+services:
+  app: # Name service
+    build: ./infra/php
+    volumes:
+      - ./backend:/work
+
