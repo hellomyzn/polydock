@@ -43,5 +43,5 @@ $ docker-compose logs -f app
 
 ### Ruine the world
 ```
-$  docker-compose down --rmi all --volumes --remove-orphans docker-compose down --rmi all --volumes --remove-orphans
+$  docker-compose down --rmi all --volumes --remove-orphans 
 ```
