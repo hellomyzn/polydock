@@ -40,6 +40,12 @@ $ docker-compose logs -f app
 ### Connect to database management application
 ![image](https://user-images.githubusercontent.com/20104403/114467672-3b724680-9c25-11eb-97e3-b868b9c0cf09.png)
 
+### FYI
+```
+# If you see memory limit error to composer install or using require, Raise the upper limit
+$ php -d memory_limit=-1 /usr/local/bin/composer install
+$ php -d memory_limit=-1 /usr/local/bin/composer require << PACKAGE >>
+```
 
 ### Ruine the world
 ```
