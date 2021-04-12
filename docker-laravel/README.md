@@ -40,3 +40,8 @@ $ docker-compose logs -f app
 ### Connect to database management application
 ![image](https://user-images.githubusercontent.com/20104403/114467672-3b724680-9c25-11eb-97e3-b868b9c0cf09.png)
 
+
+### Ruine the world
+```
+$  docker-compose down --rmi all --volumes --remove-orphans docker-compose down --rmi all --volumes --remove-orphans
+```
