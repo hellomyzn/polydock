@@ -20,7 +20,7 @@ services:
       - 3000:3000
     tty: true
     volumes:
-      - ../backend:/work/backend
+      - ../backend:/work
 
   db:
     platform: linux/x86_64
