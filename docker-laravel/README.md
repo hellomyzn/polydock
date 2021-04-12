@@ -16,4 +16,7 @@ $ docker-compose logs
 
 # specific service
 $ docker-compose logs -f app
+
+# into to app server
+$ docker-compose exec app bash
 ```
