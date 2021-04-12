@@ -4,4 +4,4 @@ RUN apk update && \
     apk add --update nodejs npm && \
     apk add git
 
-WORKDIR /work/backend
+WORKDIR /work
