@@ -43,8 +43,8 @@ $ docker-compose logs -f app
 ### FYI
 ```
 # If you see memory limit error to composer install or using require, Raise the upper limit
-$ php -d memory_limit=-1 /usr/local/bin/composer install
-$ php -d memory_limit=-1 /usr/local/bin/composer require << PACKAGE >>
+$ php -d memory_limit=-1 /usr/bin/composer install
+$ php -d memory_limit=-1 /usr/composer require << PACKAGE >>
 ```
 
 ### Ruine the world
