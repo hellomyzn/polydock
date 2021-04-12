@@ -21,6 +21,7 @@ services:
     tty: true
     volumes:
       - ./backend:/work
+    working_dir: /work
 
   db:
     platform: linux/x86_64
