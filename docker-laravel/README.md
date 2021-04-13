@@ -48,6 +48,7 @@ $ php -d memory_limit=-1 /usr/composer require << PACKAGE >>
 
 # You got conflict of package
 $ composer install --ignore-platform-reqs
+$ composer update --ignore-platform-reqs
 ```
 
 ### Ruine the world
