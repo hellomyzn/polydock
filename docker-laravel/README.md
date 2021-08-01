@@ -34,6 +34,9 @@ $ docker-compose logs
 
 # specific service
 $ docker-compose logs -f app
+
+# schemaspy service
+$ docker-compose logs schemaspy
 ```
 
 
@@ -54,4 +57,11 @@ $ composer update --ignore-platform-reqs
 ### Ruine the world
 ```
 $  docker-compose down --rmi all --volumes --remove-orphans 
+```
+
+### localhosts
+```
+web server: http://localhost:8080/
+ngrok:      http://localhost:4040/
+schemaspy:  http://localhost:8081/
 ```
