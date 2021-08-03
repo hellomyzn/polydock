@@ -31,6 +31,13 @@ services:
     volumes:
       - db-store:/var/lib/mysql
 
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - 8888:80
+    depends_on:
+      - db
+
   ngrok:
     image: wernight/ngrok
     ports:
