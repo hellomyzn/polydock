@@ -17,6 +17,12 @@ $ docker-compose down
 $ docker-compose exec python3 bash
 ```
 
+### test
+```
+# Hello world
+$ docker compose exec python3 python src/sample.py
+```
+
 ### Ruine the world
 ```
 $  docker-compose down --rmi all --volumes --remove-orphans 
