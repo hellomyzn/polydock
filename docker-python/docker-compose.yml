@@ -7,4 +7,4 @@ services:
     working_dir: '/root/'
     tty: true
     volumes:
-      - ~/projects/python:/root
+      - ./backend/:/root
