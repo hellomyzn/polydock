@@ -7,6 +7,11 @@ Based on https://qiita.com/ucan-lab/items/56c9dc3cf2e6762672f4
 ```
 
 ### How to create a new project
+0. Remove .git
+```
+$ rm -rf .git
+```
+
 1. Set up .env for docker-compose.yml.
 ```
 $ cp .env.template .env
