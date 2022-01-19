@@ -1,11 +1,13 @@
 version: "3.8"
 services:
   app:
+    container_name: app
     build: ./infra/php
     volumes:
       - ./backend:/work
 
   web:
+    container_name: web
     image: nginx:1.19.5-alpine
     ports:
       - 8080:80
@@ -15,6 +17,7 @@ services:
     working_dir: /work
 
   node:
+    container_name: node
     build: ./infra/node
     ports:
       - 3000:3000
@@ -24,14 +27,21 @@ services:
     working_dir: /work
 
   db:
+    container_name: db
     platform: linux/x86_64
     build: ./infra/mysql
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+      MYSQL_ROOT_PASSWORD: ${DB_PASS}
     ports:
       - 33060:3306
     volumes:
       - db-store:/var/lib/mysql
 
   phpmyadmin:
+    container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin:latest
     ports:
       - 8888:80
@@ -39,11 +49,12 @@ services:
       - db
 
   ngrok:
+    container_name: ngrok
     image: wernight/ngrok
     ports:
       - ${WEB_PORT:-4040}:4040
     environment:
-      NGROK_AUTH: ${NGROK_AUTH}
+      # NGROK_AUTH: ${NGROK_AUTH}
       NGROK_PROTOCOL: http
       NGROK_PORT: web:80
       # SSLの場合
@@ -51,7 +62,7 @@ services:
       # NGROK_PORT: web:443
 
   schemaspy:
-    container_name: larapra_schemaspy
+    container_name: schemaspy
     build: ./infra/schemaspy
     image: schemaspy/schemaspy
     volumes:
@@ -63,17 +74,17 @@ services:
       -dp /drivers
       -host db
       -port 3306
-      -db ${DB_NAME:-laravel_local}
-      -u ${DB_USER:-phper}
-      -p ${DB_PASS:-secret}
-      -s ${DB_NAME:-laravel_local}
+      -db ${DB_NAME}
+      -u ${DB_USER}
+      -p ${DB_PASS}
+      -s ${DB_NAME}
       -o /output
       -connprops allowPublicKeyRetrieval\\=false useSSL\\=false
     depends_on:
       - db
 
   nginx_schemaspy:
-    container_name: larapra_nginx_schemaspy
+    container_name: nginx_schemaspy
     image: nginx:1.19.5-alpine
     volumes:
       - ./infra/schemaspy/output:/usr/share/nginx/html
