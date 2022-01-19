@@ -43,10 +43,10 @@ $ make init
 # Web server
 $ open http://localhost:8080/
 
-# Php my admin
+# Schemaspy. if you can not see it, run this command $make chemaspy
 $ open http://localhost:8081/
 
-# Schemaspy
+# Php my admin
 $ open http://localhost:8888/
 
 # Ngrok
