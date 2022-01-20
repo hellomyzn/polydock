@@ -15,6 +15,7 @@ $ rm -rf .git
 1. Set up .env for docker-compose.yml.
 ```
 $ cp .env.template .env
+Add NGROK_AUTH key
 ```
 
 2. Create laravel project
