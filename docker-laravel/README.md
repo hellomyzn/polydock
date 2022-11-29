@@ -38,6 +38,10 @@ DB_PASSWORD=secret
 ```
 $ make init
 ```
+*If you need some helpful packages, run this command below*
+```
+$ make install-recommend-packages
+```
 
 5. Make sure
 ```
