@@ -45,6 +45,7 @@ $ make init
 $ make install-recommend-packages
 ```
 
+`backend/package.json`
 ```js:backend/package.json
 ...
     "scripts": {
