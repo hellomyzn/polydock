@@ -58,6 +58,12 @@ $ open http://localhost:8888/
 $ open http://localhost:4040/
 ```
 
+6. Install Packages
+```
+# composer packages
+$ make install-recommend-packages
+```
+
 
 ### Docker Command
 ```
