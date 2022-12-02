@@ -38,12 +38,23 @@ DB_PASSWORD=secret
 ```
 $ make init
 ```
-*If you need some helpful packages, run this command below*
+
+5. Install Packages
 ```
+# composer packages
 $ make install-recommend-packages
 ```
 
-5. Make sure
+```js:backend/package.json
+...
+    "scripts": {
+        "dev": "vite --host",
+        "build": "vite build"
+    },
+...
+```
+
+6. Make sure
 ```
 # Web server
 $ open http://localhost:8080/
@@ -58,11 +69,7 @@ $ open http://localhost:8888/
 $ open http://localhost:4040/
 ```
 
-6. Install Packages
-```
-# composer packages
-$ make install-recommend-packages
-```
+
 
 
 ### Docker Command
