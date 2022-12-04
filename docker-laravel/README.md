@@ -36,13 +36,23 @@ DB_PASSWORD=secret
 
 ```
 $ cp .env.example .env.testing
+$ php artisan key:generate --env=testing
 ```
-*.env.testing*
+**.env.testing**
 ```
-DB_DATABASE=laravel_testing
+APP_ENV=testing
+
+DB_CONNECTION=mysql
+DB_HOST=db-testing
+DB_PORT=3306
+DB_DATABASE=laravel_local
+DB_USERNAME=phper
+DB_PASSWORD=secret
 ```
 **phpunit.xml**
 ```
+<env name="APP_ENV" value="testing"/>
+<env name="DB_CONNECTION" value="mysql"/>
 <env name="DB_DATABASE" value="laravel_testing"/>
 ```
 

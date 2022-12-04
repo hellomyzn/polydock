@@ -40,6 +40,9 @@ services:
     volumes:
       - db-store:/var/lib/mysql
 
+  db-testing:
+    build: ./infra/mysql
+
   phpmyadmin:
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin:latest
