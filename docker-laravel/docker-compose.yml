@@ -41,6 +41,7 @@ services:
       - db-store:/var/lib/mysql
 
   db-testing:
+    container_name: db-test
     build: ./infra/mysql
 
   phpmyadmin:
