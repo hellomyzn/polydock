@@ -41,7 +41,10 @@ $ cp .env.example .env.testing
 ```
 DB_DATABASE=laravel_testing
 ```
-
+**phpunit.xml**
+```
+<env name="DB_DATABASE" value="laravel_testing"/>
+```
 
 
 4. Initialization
