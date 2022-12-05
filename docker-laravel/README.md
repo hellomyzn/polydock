@@ -35,8 +35,7 @@ DB_PASSWORD=secret
 ```
 
 ```
-$ cp .env.example .env.testing
-$ php artisan key:generate --env=testing
+$ cp backend/.env.example backend/.env.testing
 ```
 **.env.testing**
 ```
