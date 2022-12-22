@@ -50,20 +50,20 @@ DB_PASSWORD=secret
 ```
 **phpunit.xml**
 ```
-<php>
-    <env name="APP_ENV" value="testing" force="true"/>
-    <env name="DB_CONNECTION" value="mysql" force="true"/>
-    <env name="DB_HOST" value="db-testing" force="true"/>
-    <env name="DB_PORT" value="3306" force="true"/>
-    <env name="DB_DATABASE" value="laravel_local" force="true"/>
-    <env name="DB_USERNAME" value="phper" force="true"/>
-    <env name="DB_PASSWORD" value="secret" force="true"/>
-    <env name="BCRYPT_ROUNDS" value="4"/>
-    <env name="CACHE_DRIVER" value="array"/>
-    <env name="MAIL_DRIVER" value="array"/>
-    <env name="QUEUE_CONNECTION" value="sync"/>
-    <env name="SESSION_DRIVER" value="array"/>
-</php>
+    <php>
+        <env name="APP_ENV" value="testing" force="true"/>
+        <env name="DB_CONNECTION" value="mysql" force="true"/>
+        <env name="DB_HOST" value="db-testing" force="true"/>
+        <env name="DB_PORT" value="3306" force="true"/>
+        <env name="DB_DATABASE" value="laravel_local" force="true"/>
+        <env name="DB_USERNAME" value="phper" force="true"/>
+        <env name="DB_PASSWORD" value="secret" force="true"/>
+        <env name="BCRYPT_ROUNDS" value="4"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="MAIL_DRIVER" value="array"/>
+        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="SESSION_DRIVER" value="array"/>
+    </php>
 ```
 
 
@@ -78,12 +78,14 @@ $ make init
 $ make install-recommend-packages
 ```
 
-`backend/package.json`
-```js:backend/package.json
+`backend/vite.config.js`
+```js:backend/vite.config.js
 ...
-    "scripts": {
-        "dev": "vite --host",
-        "build": "vite build"
+    server: {
+        host: true,
+        hmr: {
+            host: 'localhost',
+        },
     },
 ...
 ```
