@@ -133,7 +133,6 @@ return [
 ```
 
 4. Japanese translation file
-```
 [Laravel 9.x validation.php言語ファイル](https://readouble.com/laravel/9.x/ja/validation-php.html)
 
 5. Remove unnecessary scripts on `composer.json`
