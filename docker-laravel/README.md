@@ -156,10 +156,19 @@ return [
 ```
 
 6. Logs
+**Change from single to daily log**
+`backend/config/loggging.php`
+```
+        'stack' => [
+            'driver' => 'stack',
+            'channels' => ['daily'],
+            'ignore_exceptions' => false,
+        ],
+```
 - Slack log: [LaravelでエラーログをSlackに投稿したい](https://qiita.com/shihori_23/items/4f6d37c2c2c546909159)
 - SQL log: [Laravel SQLの実行クエリログを出力する](https://qiita.com/ucan-lab/items/753cb9d3e4ceeb245341)
 - Request log: [Laravel リクエストログを出力する](https://qiita.com/ucan-lab/items/bfd15b096a916f811468)
-- Console log and HTTP lot: [Laravel ConsoleとHttpのログファイルを分ける](https://qiita.com/ucan-lab/items/4dd7b5f7a3eb57a3ef1f)
+- Console log and HTTP log: [Laravel ConsoleとHttpのログファイルを分ける](https://qiita.com/ucan-lab/items/4dd7b5f7a3eb57a3ef1f)
 
 
 **references**
