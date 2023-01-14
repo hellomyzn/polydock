@@ -7,12 +7,12 @@ Based on https://qiita.com/ucan-lab/items/56c9dc3cf2e6762672f4
 ```
 
 ### How to create a new project
-0. Remove .git
+0. Remove `.git`
 ```
 $ rm -rf .git
 ```
 
-1. Set up .env for docker-compose.yml.
+1. Set up `.env` for `docker-compose.yml`
 ```
 $ cp .env.template .env
 Add NGROK_AUTH key
@@ -23,7 +23,7 @@ Add NGROK_AUTH key
 $ make create-project
 ```
 
-3. Set up ./backend/.env.example and .env.testing
+3. Set up `./backend/.env.example` and `.env.testing`
 ```
 # This is default set up for DB based on ./.env.template.
 DB_CONNECTION=mysql
@@ -37,7 +37,7 @@ DB_PASSWORD=secret
 ```
 $ cp backend/.env.example backend/.env.testing
 ```
-**.env.testing**
+`.env.testing`
 ```
 APP_ENV=testing
 APP_KEY=<<COPY A KEY FROM .ENV>>
@@ -49,7 +49,7 @@ DB_DATABASE=laravel_local
 DB_USERNAME=phper
 DB_PASSWORD=secret
 ```
-**phpunit.xml**
+`phpunit.xml`
 ```
     <php>
         <env name="APP_ENV" value="testing" force="true"/>
@@ -106,7 +106,82 @@ $ open http://localhost:8888/
 $ open http://localhost:4040/
 ```
 
+### Optional setup
+1. .env
+```
+APP_NAME=Application name
+```
 
+2. Timezone and Language
+`config/app.php`
+```
+return [
+    // アプリケーションデフォルトのタイムゾーンを設定できます。
+    // PHPの日付および日時関数を使用する際にこの設定を参照します。
+    'timezone' => 'Asia/Tokyo',
+
+    // 翻訳サービスプロバイダーが使用するデフォルトのロケールを設定します。
+    'locale' => 'ja',
+
+    // フォールバックロケールは、指定したロケールが使用できない場合に使用するロケールを決定します。
+    'fallback_locale' => 'ja',
+
+    // FakerPHPライブラリがデータを生成する際に使用されます。
+    'faker_locale' => 'ja_JP',
+],
+```
+
+3. Database charset
+`config/database.php`
+```
+return [
+    'connections' => [
+        'mysql' => [
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_bin',
+        ],
+    ],
+];
+```
+
+4. Japanese translation file
+```
+# Install files
+$ composer require --dev laravel-lang/lang laravel-lang/publisher
+$ php artisan lang:add ja
+# Uninstall library
+$ composer remove --dev laravel-lang/lang laravel-lang/publisher
+```
+
+5. Remove unnecessary scripts on `composer.json`
+`composer.json`
+```
+    "scripts": {
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ],
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ]
+    },
+```
+
+6. Logs
+- Slack log: [LaravelでエラーログをSlackに投稿したい](https://qiita.com/shihori_23/items/4f6d37c2c2c546909159)
+- SQL log: [Laravel SQLの実行クエリログを出力する](https://qiita.com/ucan-lab/items/753cb9d3e4ceeb245341)
+- Request log: [Laravel リクエストログを出力する](https://qiita.com/ucan-lab/items/bfd15b096a916f811468)
+- Console log and HTTP lot: [Laravel ConsoleとHttpのログファイルを分ける](https://qiita.com/ucan-lab/items/4dd7b5f7a3eb57a3ef1f)
+
+
+**references**
+- [Laravelプロジェクトの初期設定](https://qiita.com/ucan-lab/items/8eab84e37421f907dea0)
 
 
 ### Docker Command
