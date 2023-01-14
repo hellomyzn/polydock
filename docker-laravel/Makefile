@@ -10,7 +10,7 @@ create-project:
 	@make up
 	docker-compose exec app composer create-project --prefer-dist laravel/laravel .
 install-recommend-packages:
-	docker-compose exec app composer require doctrine/dbal
+	docker-compose exec app composer require doctrine/dbal "^2"
 	docker-compose exec app composer require --dev barryvdh/laravel-ide-helper
 	docker-compose exec app composer require --dev beyondcode/laravel-dump-server
 	docker-compose exec app composer require --dev barryvdh/laravel-debugbar
@@ -24,6 +24,8 @@ install-recommend-packages:
 init:
 	mkdir -p ./infra/php/bash/psysh
 	touch ./infra/php/bash/.bash_history
+	cp backend/.env.example backend/.env
+	cp backend/.env.example backend/.env.testing
 	docker-compose up -d --build
 	docker-compose exec app composer install
 	docker-compose exec app php artisan key:generate

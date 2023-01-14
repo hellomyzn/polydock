@@ -23,9 +23,8 @@ Add NGROK_AUTH key
 $ make create-project
 ```
 
-3. Set up `./backend/.env.example` and `.env.testing`
+3. Set up `./backend/.env.template`
 ```
-# This is default set up for DB based on ./.env.template.
 DB_CONNECTION=mysql
 DB_HOST=db
 DB_PORT=3306
@@ -34,20 +33,15 @@ DB_USERNAME=phper
 DB_PASSWORD=secret
 ```
 
+4. Initialization
 ```
-$ cp backend/.env.example backend/.env.testing
+$ make init
 ```
+
 `.env.testing`
 ```
 APP_ENV=testing
-APP_KEY=<<COPY A KEY FROM .ENV>>
-
-DB_CONNECTION=mysql
 DB_HOST=db-testing
-DB_PORT=3306
-DB_DATABASE=laravel_local
-DB_USERNAME=phper
-DB_PASSWORD=secret
 ```
 `phpunit.xml`
 ```
@@ -65,12 +59,6 @@ DB_PASSWORD=secret
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
     </php>
-```
-
-
-4. Initialization
-```
-$ make init
 ```
 
 5. Install Packages
@@ -107,7 +95,7 @@ $ open http://localhost:4040/
 ```
 
 ### Optional setup
-1. .env
+1. `.env`
 ```
 APP_NAME=Application name
 ```
@@ -146,12 +134,7 @@ return [
 
 4. Japanese translation file
 ```
-# Install files
-$ composer require --dev laravel-lang/lang laravel-lang/publisher
-$ php artisan lang:add ja
-# Uninstall library
-$ composer remove --dev laravel-lang/lang laravel-lang/publisher
-```
+[Laravel 9.x validation.php言語ファイル](https://readouble.com/laravel/9.x/ja/validation-php.html)
 
 5. Remove unnecessary scripts on `composer.json`
 `composer.json`
