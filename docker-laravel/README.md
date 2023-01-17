@@ -161,9 +161,22 @@ return [
 ```
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['daily'],
+            'channels' => ['daily', 'stderr'],
             'ignore_exceptions' => false,
         ],
+        
+        ・・・
+        # out put app logs to docker compose logs -f app
+        'stderr' => [
+            'driver' => 'monolog',
+            'level' => env('LOG_LEVEL', 'debug'),
+            'handler' => StreamHandler::class,
+            'formatter' => env('LOG_STDERR_FORMATTER', 'Monolog\\Formatter\\JsonFormatter'),
+            'with' => [
+                'stream' => 'php://stderr',
+            ],
+        ],
+
 ```
 - Slack log: [LaravelでエラーログをSlackに投稿したい](https://qiita.com/shihori_23/items/4f6d37c2c2c546909159)
 - SQL log: [Laravel SQLの実行クエリログを出力する](https://qiita.com/ucan-lab/items/753cb9d3e4ceeb245341)
