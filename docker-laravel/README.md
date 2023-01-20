@@ -217,6 +217,15 @@ $ docker-compose logs
 # specific service
 $ docker-compose logs -f app
 
+# db logs
+$ make logs-db
+
+# db error logs
+$ make logs-db-error
+
+# recommend to use grep
+$ make logs-db | grep 2023-01-20
+
 # schemaspy service
 $ docker-compose logs schemaspy
 ```
