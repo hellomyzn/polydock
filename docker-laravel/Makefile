@@ -14,6 +14,8 @@ install:
 	docker compose exec app php artisan storage:link
 	docker compose exec app chmod -R 777 storage bootstrap/cache
 	@make fresh
+packages:
+	docker-compose exec app composer require --dev barryvdh/laravel-debugbar
 up:
 	docker compose up -d
 build:

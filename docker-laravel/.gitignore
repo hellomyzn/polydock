@@ -4,7 +4,7 @@ npm-debug.log
 yarn-error.log
 *psysh
 *.bash_history
-infra/schemaspy/output/
+infra/docker/schemaspy/output/
 
 # Laravel 4 specific
 bootstrap/compiled.php
@@ -25,4 +25,4 @@ Homestead.json
 /.vagrant
 .phpunit.result.cache
 
-backend/.env.testing
+.env.testing
