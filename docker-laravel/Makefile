@@ -1,103 +1,97 @@
-up:
-	mkdir -p ./backend
-	docker-compose up -d --build
-build:
-	docker-compose build --no-cache --force-rm
-create-project:
-	mkdir -p ./infra/php/bash/psysh
-	touch ./infra/php/bash/.bash_history
+create:
+	mkdir -p src
+	docker compose build
+	docker compose up -d
+	docker compose exec app composer create-project --prefer-dist laravel/laravel .
+install:
 	@make build
 	@make up
-	docker-compose exec app composer create-project --prefer-dist laravel/laravel .
-install-recommend-packages:
-	docker-compose exec app composer require doctrine/dbal "^2"
-	docker-compose exec app composer require --dev beyondcode/laravel-dump-server
-	docker-compose exec app composer require --dev barryvdh/laravel-debugbar
-	docker-compose exec app composer require --dev roave/security-advisories:dev-master
-	docker-compose exec app composer require --dev laravel/breeze
-	docker-compose exec app php artisan breeze:install
-	docker-compose exec app php artisan vendor:publish --provider="BeyondCode\DumpServer\DumpServerServiceProvider"
-	docker-compose exec app php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
-	@make migrate
-	docker-compose exec node npm install
-init:
-	mkdir -p ./infra/php/bash/psysh
-	touch ./infra/php/bash/.bash_history
-	cp backend/.env.example backend/.env
-	cp backend/.env.example backend/.env.testing
-	docker-compose up -d --build
-	docker-compose exec app composer install
-	docker-compose exec app php artisan key:generate
+	docker compose exec app composer install
+	docker compose exec app cp .env.example .env
+	docker compose exec app cp .env.example .env.testing
+	docker compose exec app php artisan key:generate
 	docker-compose exec app php artisan key:generate --env=testing
-	docker-compose exec app php artisan storage:link
-	docker-compose exec app php artisan migrate:fresh --seed
+	docker compose exec app php artisan storage:link
+	docker compose exec app chmod -R 777 storage bootstrap/cache
+	@make fresh
+up:
+	docker compose up -d
+build:
+	docker compose build
 remake:
 	@make destroy
-	@make init
+	@make install
 stop:
-	docker-compose stop
+	docker compose stop
 down:
-	docker-compose down
+	docker compose down --remove-orphans
+down-v:
+	docker compose down --remove-orphans --volumes
 restart:
 	@make down
 	@make up
 destroy:
-	docker-compose down --rmi all --volumes
-destroy-volumes:
-	docker-compose down --volumes
+	docker compose down --rmi all --volumes --remove-orphans
 ps:
 	docker-compose ps
 logs:
-	docker-compose logs
-logs-app:
-	docker compose logs -f app
-logs-db:
-	docker compose exec db tail -100 /var/lib/mysql/mysql-general.log
-logs-db-error:
-	docker compose exec db tail -100 /var/lib/mysql/mysql-error.log
+	docker compose logs
 logs-watch:
-	docker-compose logs --follow
+	docker compose logs --follow
+log-web:
+	docker compose logs web
+log-web-watch:
+	docker compose logs --follow web
+log-app:
+	docker compose logs app
+log-app-watch:
+	docker compose logs --follow app
+log-db:
+	docker compose logs db
+log-db-watch:
+	docker compose logs --follow db
+# logs-db:
+	# docker compose exec db tail -100 /var/lib/mysql/mysql-general.log
+# logs-db-error:
+	# docker compose exec db tail -100 /var/lib/mysql/mysql-error.log
 web:
-	docker-compose exec web ash
+	docker-compose exec web bash
 app:
 	docker-compose exec app bash
 node:
 	docker-compose exec node ash
 schemaspy:
 	docker-compose up schemaspy
+db:
+	docker compose exec db bash
+sql:
+	docker compose exec db bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
 migrate:
 	docker-compose exec app php artisan migrate
 fresh:
-	docker-compose exec app php artisan migrate:fresh
+	docker compose exec app php artisan migrate:fresh --seed
 seed:
 	docker-compose exec app php artisan db:seed
+rollback-test:
+	docker compose exec app php artisan migrate:fresh
+	docker compose exec app php artisan migrate:refresh
 tinker:
-	docker-compose exec app php artisan tinker
+	docker compose exec app php artisan tinker
 test:
-	docker-compose exec app php artisan test
+	docker compose exec app php artisan test
 optimize:
 	docker-compose exec app php artisan optimize
 optimize-clear:
 	docker-compose exec app php artisan optimize:clear
 cache:
-	docker-compose exec app composer dump-autoload -o
+	docker compose exec app composer dump-autoload -o
 	@make optimize
+	docker compose exec app php artisan event:cache
+	docker compose exec app php artisan view:cache
 cache-clear:
+	docker compose exec app composer clear-cache
 	@make optimize-clear
-yarn:
-	docker-compose exec web yarn
-yarn-dev:
-	docker-compose exec web yarn run dev
-yarn-watch:
-	docker-compose exec web yarn run watch
-yarn-watch-poll:
-	docker-compose exec web yarn run watch-poll
-yarn-hot:
-	docker-compose exec web yarn run hot
-db:
-	docker-compose exec db bash
-sql:
-	docker-compose exec db bash -c 'mysql -u $$MYSQL_USER -p$$MYSQL_PASSWORD $$MYSQL_DATABASE'
+	docker compose exec app php artisan event:clear
 redis:
 	docker-compose exec redis redis-cli
 ide-helper:

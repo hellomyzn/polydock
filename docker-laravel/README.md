@@ -20,17 +20,7 @@ Add NGROK_AUTH key
 
 2. Create laravel project
 ```
-$ make create-project
-```
-
-3. Set up `./backend/.env.template`
-```
-DB_CONNECTION=mysql
-DB_HOST=db
-DB_PORT=3306
-DB_DATABASE=laravel_local
-DB_USERNAME=phper
-DB_PASSWORD=secret
+$ make create
 ```
 
 4. Initialization
@@ -82,10 +72,7 @@ $ make install-recommend-packages
 6. Make sure
 ```
 # Web server
-$ open http://localhost:8080/
-
-# Schemaspy. if you can not see it, run this command $make chemaspy
-$ open http://localhost:8081/
+$ open http://localhost:80/
 
 # Php my admin
 $ open http://localhost:8888/
@@ -188,26 +175,6 @@ return [
 - [Laravelプロジェクトの初期設定](https://qiita.com/ucan-lab/items/8eab84e37421f907dea0)
 
 
-### Docker Command
-```
-# build
-$ docker-compose up -d --build
-
-# down
-$ docker-compose down
-```
-
-### Into to container
-```
-# app server
-$ docker-compose exec app bash
-
-# node server
-$ docker-compose exec node ash
-
-# db server
-$ docker-compose exec db bash
-```
 
 ### Output server log
 ```
@@ -249,16 +216,4 @@ $ docker image prune
 
 # If you want to make sure .evn file for docker-compose.yml is working or not
 $ docker-compose config
-```
-
-### Ruine the world
-```
-$  docker-compose down --rmi all --volumes --remove-orphans 
-```
-
-### localhosts
-```
-web server: http://localhost:8080/
-ngrok:      http://localhost:4040/
-schemaspy:  http://localhost:8081/
 ```
