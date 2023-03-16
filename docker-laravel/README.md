@@ -3,7 +3,7 @@ Based on https://qiita.com/ucan-lab/items/56c9dc3cf2e6762672f4
 
 ### Make sure with phpinfo.php
 ```
-[mac] $ echo "<?php phpinfo();" > backend/public/phpinfo.php
+[mac] $ echo "<?php phpinfo();" > src/public/phpinfo.php
 ```
 
 ### How to create a new project
@@ -23,9 +23,9 @@ Add NGROK_AUTH key
 $ make create
 ```
 
-4. Initialization
+3. Initialization
 ```
-$ make init
+$ make install
 ```
 
 `.env.testing`
@@ -51,14 +51,14 @@ DB_HOST=db-testing
     </php>
 ```
 
-5. Install Packages
+4. Install Packages
 ```
 # composer packages
 $ make install-recommend-packages
 ```
 
-`backend/vite.config.js`
-```js:backend/vite.config.js
+`src/vite.config.js`
+```js:src/vite.config.js
 ...
     server: {
         host: true,
@@ -69,7 +69,7 @@ $ make install-recommend-packages
 ...
 ```
 
-6. Make sure
+5. Make sure
 ```
 # Web server
 $ open http://localhost:80/
@@ -144,7 +144,7 @@ return [
 
 6. Logs
 **Change from single to daily log**
-`backend/config/loggging.php`
+`src/config/loggging.php`
 ```
         'stack' => [
             'driver' => 'stack',
