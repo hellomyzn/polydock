@@ -14,4 +14,8 @@ RUN apt-get install -y vim less
 RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 
-RUN python -m pip install jupyterlab gspread oauth2client
+RUN python -m pip install jupyterlab \
+    gspread \
+    oauth2client \
+    spotipy \
+
