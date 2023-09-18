@@ -6,4 +6,4 @@
 /src/src/**
 !/src/src/**/
 !/src/src/**/.gitkeep
-src/config/config.ini
+src/common/config/config.ini
