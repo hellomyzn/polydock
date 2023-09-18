@@ -2,6 +2,7 @@
 *.bash_history
 *.python_history
 *.DS_Store
+*.cache
 
 /src/src/**
 !/src/src/**/
