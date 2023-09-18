@@ -2,3 +2,8 @@
 *.bash_history
 *.python_history
 *.DS_Store
+
+/src/src/**
+!/src/src/**/
+!/src/src/**/.gitkeep
+src/config/config.ini
