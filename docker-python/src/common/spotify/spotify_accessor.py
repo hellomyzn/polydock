@@ -29,6 +29,11 @@ class SpotifyAccessor(Singleton):
                 - SPOTIPY_CLIENT_ID
                 - SPOTIPY_CLIENT_SECRET
             2. put redirect url after running script and pasting url shown
+            e.g.
+                from common.spotify import SpotifyAccessor
+                spo = SpotifyAccessor()
+                sc = spo.connection
+                playlist_items = sc.playlist_items(playlist_id, limit=100, offset=0)
     """
     # Shared connection
     __connection = None

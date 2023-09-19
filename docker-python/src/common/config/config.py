@@ -15,6 +15,17 @@ from utils import Singleton
 
 
 class Config(Singleton):
+    """
+    Usage:
+        1. $ cp common/config/config.ini.template common/config/config.ini
+        2. put values in each keys in config.ini
+        *you can change a path of config.ini in the __initialize func
+
+        e.g.
+            from common.config import Config
+            config = Config().config
+            lp = config["LOG"]["PATH"]
+    """
     __config = None
 
     def __init__(self):

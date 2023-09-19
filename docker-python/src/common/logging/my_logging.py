@@ -34,6 +34,14 @@ LOGGER = None
 
 def initialize_logger(log_name: str, log_file_path: str, level) -> None:
     """ Initialize global logge. generate logger with specific level and path.
+    e.g.
+        from common.logging import initialize_logger
+        from common.logging import (
+            info,
+            error_stack_trace
+        )
+        initialize_logger("main", log_path, "info")
+        info('log message')
 
     Args:
         log_name (str): Log name

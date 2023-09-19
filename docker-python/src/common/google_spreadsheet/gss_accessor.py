@@ -28,6 +28,12 @@ class GssAccessor(Singleton):
                 - JSON_PATH
                 - SHEET_KEY
                 - SHEET_NAME
+            e.g.
+                from common.google_spreadsheet import GssAccessor
+                gss = GssAccessor()
+                workbook = gss.connection.open_by_key(sheet_key)
+                worksheet = workbook.worksheet(sheet_name)
+                first_column_data = list(filter(None, worksheet.col_values(1)))
 
         Reference:
         - https://qiita.com/164kondo/items/eec4d1d8fd7648217935
