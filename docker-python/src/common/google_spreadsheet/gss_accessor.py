@@ -34,22 +34,31 @@ class GssAccessor(Singleton):
         - https://www.cdatablog.jp/entry/2019/04/16/191006
     """
     # Shared connection
-    connection = None
+    __connection = None
 
     def __init__(self):
-        self.connect = GssAccessor.initialize()
+        self.__connection = self.__initialize()
 
-    @classmethod
-    def initialize(cls) -> gspread.client.Client:
+    @property
+    def connection(self) -> gspread.client.Client:
+        """Getter for __connection
+
+        Returns:
+            self.__connection (ConfigParser): Private property __connection
+        """
+        return self.__connection
+
+    def __initialize(self) -> gspread.client.Client:
         """Connect Google Spreadsheet
 
         Returns:
             connct: connection for google_spreadsheet
         """
-        if cls.connection is not None:
-            return cls.connection
+        if self.__connection is not None:
+            return self.__connection
 
-        config = Config().get_config()
+        connection = None
+        config = Config().config
         json_path = config['GSS']['JSON_PATH']
         scope = ['https://spreadsheets.google.com/feeds',
                  'https://www.googleapis.com/auth/drive']
@@ -58,11 +67,11 @@ class GssAccessor(Singleton):
 
         try:
             credentials = ServiceAccountCredentials.from_json_keyfile_name(json_path, scope)
-            cls.connection = gspread.authorize(credentials)
+            connection = gspread.authorize(credentials)
             info('Succeed in connecting Google Spreadshee')
 
         except Exception as err:
             error_stack_trace(
                 f"Fail to connect Google Spreadshee. error: {err}, json_path: {json_path}, scope: {scope}")
 
-        return cls.connection
+        return connection
