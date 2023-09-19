@@ -10,7 +10,7 @@ restart:
 	@make down
 	@make up
 destroy:
-	docker-compose down --rmi all --volumes
+	docker-compose down --rmi all --volumes --remove-orphans 
 destroy-volumes:
 	docker-compose down --volumes
 ps:

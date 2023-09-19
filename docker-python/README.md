@@ -4,17 +4,17 @@ Based on https://qiita.com/jhorikawa_err/items/fb9c03c0982c29c5b6d5
 
 ### Docker Command
 ```
-# build
-$ docker-compose up -d --build
+# build (docker-compose up -d --build)
+$ make up
 
-# down
-$ docker-compose down
+# down (docker-compose down)
+$ make down
 ```
 
 ### Into to container
 ```
-# python3 server
-$ docker-compose exec python3 bash
+# python3 server (docker-compose exec python3 bash)
+$ make python
 ```
 
 ### test
@@ -25,5 +25,6 @@ $ docker compose exec python3 python src/sample.py
 
 ### Ruine the world
 ```
-$  docker-compose down --rmi all --volumes --remove-orphans 
+# destroy (docker-compose down --rmi all --volumes --remove-orphans)
+$ make destroy
 ```
