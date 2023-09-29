@@ -49,4 +49,9 @@ class Config(Singleton):
         config = ConfigParser()
         config.read(config_file, encoding="utf-8")
 
+        if config["APP"]["ENV"] == "DEV":
+            config_file = 'common/config/config.test.ini'
+            config.read(config_file, encoding="utf-8")
+            return config
+
         return config

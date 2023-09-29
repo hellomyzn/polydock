@@ -11,13 +11,10 @@
 # Own packages
 #########################################################
 from common.logging import initialize_logger
-from common.config import Config
 
 
 def main():
-    config = Config().config
-    lp = config["LOG"]["PATH"]
-    initialize_logger("main", lp, "info")
+    initialize_logger()
 
 
 if __name__ == "__main__":

@@ -18,6 +18,7 @@ from logging.handlers import RotatingFileHandler
 #########################################################
 # Own packages
 #########################################################
+from common.config import Config
 from common.logging.custom_formatter import CustomFormatter
 
 
@@ -31,8 +32,13 @@ MAX_LOG_SIZE = 1 * 1024 * 1024
 
 LOGGER = None
 
+# log config
+CONFIG = Config().config
+LOG_NAME = CONFIG["LOG"]["NAME"]
+LOG_PATH = CONFIG["LOG"]["PATH"]
+LOG_LEVEL = CONFIG["LOG"]["LEVEL"]
 
-def initialize_logger(log_name: str, log_file_path: str, level) -> None:
+def initialize_logger(log_name: str = LOG_NAME, log_file_path: str = LOG_PATH, level = LOG_LEVEL) -> None:
     """ Initialize global logge. generate logger with specific level and path.
     e.g.
         from common.logging import initialize_logger
