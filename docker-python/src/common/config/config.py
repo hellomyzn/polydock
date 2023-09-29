@@ -50,7 +50,7 @@ class Config(Singleton):
         config.read(config_file, encoding="utf-8")
 
         if config["APP"]["ENV"] == "DEV":
-            config_file = 'common/config/config.test.ini'
+            config_file = 'common/config/config.dev.ini'
             config.read(config_file, encoding="utf-8")
             return config
 
