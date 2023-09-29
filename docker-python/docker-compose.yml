@@ -1,10 +1,14 @@
-version: '3'
+version: '3.6'
 services:
   python3:
     restart: always
-    build: ./infra/docker/python/
+    build:
+      context: .
+      dockerfile: ./infra/docker/python/Dockerfile
     container_name: 'python3'
-    working_dir: '/root/'
+    working_dir: '/home/myzn/'
     tty: true
     volumes:
-      - ./src/:/root
+      - ./src/:/home/myzn/src
+    environment:
+      - TZ=Asia/Tokyo
