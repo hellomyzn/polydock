@@ -1,6 +1,7 @@
 *.pyc
 *.DS_Store
 *poetry.lock
+*.bash_history
 
 /src/src/**
 !/src/src/**/

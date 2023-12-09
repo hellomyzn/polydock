@@ -1,15 +1,15 @@
 [tool.poetry]
-name = "src"
+name = "work"
 version = "0.1.0"
 description = ""
-authors = ["None"]
+authors = ["Your Name <you@example.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-gspread = "^5.11.2"
+gspread = "^5.12.2"
 oauth2client = "^4.1.3"
-spotipy = "^2.23.0"
+
 
 [build-system]
 requires = ["poetry-core"]
