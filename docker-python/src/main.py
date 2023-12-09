@@ -1,4 +1,4 @@
-"""Entory point"""
+"""Entry point"""
 #########################################################
 # Builtin packages
 #########################################################
@@ -12,10 +12,11 @@
 #########################################################
 # Own packages
 #########################################################
-from common.logging import initialize_logger
+from common.log import initialize_logger
 
 
 def main():
+    """main"""
     initialize_logger()
 
 
