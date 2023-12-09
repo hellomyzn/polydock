@@ -1,10 +1,9 @@
 """common.logging"""
 from .custom_formatter import CustomFormatter
-from .my_logging import (
+from .log import (
     log,
     debug,
     info,
-    warn,
     warn,
     error,
     error_stack_trace,

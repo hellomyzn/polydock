@@ -14,7 +14,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 #########################################################
 from utils import Singleton
 from common.config import Config
-from common.logging import (
+from common.log import (
     info,
     error_stack_trace
 )
@@ -58,7 +58,7 @@ class GssAccessor(Singleton):
         """Connect Google Spreadsheet
 
         Returns:
-            connct: connection for google_spreadsheet
+            connection: connection for google_spreadsheet
         """
         if self.__connection is not None:
             return self.__connection
@@ -74,10 +74,10 @@ class GssAccessor(Singleton):
         try:
             credentials = ServiceAccountCredentials.from_json_keyfile_name(json_path, scope)
             connection = gspread.authorize(credentials)
-            info('Succeed in connecting Google Spreadshee')
+            info('Succeed in connecting Google Spreadsheet')
 
         except Exception as err:
             error_stack_trace(
-                f"Fail to connect Google Spreadshee. error: {err}, json_path: {json_path}, scope: {scope}")
+                f"Fail to connect Google Spreadsheet. error: {err}, json_path: {json_path}, scope: {scope}")
 
         return connection

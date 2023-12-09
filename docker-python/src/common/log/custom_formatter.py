@@ -18,6 +18,7 @@ LOG_DATE_FORMAT_TIMEZONE = "%z"
 
 
 class CustomFormatter(logging.Formatter):
+    """CustomFormatter"""
 
     def formatTime(self, record, datefmt=None) -> str:
         """to override a formatTime method
@@ -38,7 +39,7 @@ class CustomFormatter(logging.Formatter):
             result = time.strftime(datefmt, cvt)
         else:
             time_strftime = time.strftime(LOG_DATE_FORMAT_BASE, cvt)
-            tzone = time.strftime(LOG_DATE_FORMAT_TIMEZONE, cvt)
-            result = "%s.%03d%s" % (time_strftime, record.msecs, tzone)
+            time_zone = time.strftime(LOG_DATE_FORMAT_TIMEZONE, cvt)
+            result = "%s.%03d%s" % (time_strftime, record.msecs, time_zone)
 
         return result

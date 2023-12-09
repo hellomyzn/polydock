@@ -16,7 +16,7 @@ from spotipy.oauth2 import SpotifyOAuth
 from utils import Singleton
 
 from common.config import Config
-from common.logging import (
+from common.log import (
     info,
     error_stack_trace
 )
@@ -86,7 +86,7 @@ class SpotifyAccessor(Singleton):
             info('Succeed in connecting Spotify...')
         except Exception as err:
             error_stack_trace(
-                f"Fail to connect Sptify. error: {err}, \
+                f"Fail to connect Spotify. error: {err}, \
                 client_id: {client_id}, \
                 client_secret: {client_secret}, \
                 redirect_uri: {redirect_uri}, \
