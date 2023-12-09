@@ -11,12 +11,10 @@ RUN curl -sSL https://install.python-poetry.org | python3 && \
     ln -s /opt/poetry/bin/poetry && \
     # not create virtual env since it's in a container 
     poetry config virtualenvs.create false
-
-# copy poetry definition files
 COPY ./src/pyproject.toml* ./src/poetry.lock* ./
 # install packages through poetry if there is a pyproject.toml
 RUN if [ -f pyproject.toml ]; then poetry install; fi
-# RUN poetry export --without-hashes --output "/opt/work/requirements.txt"
+
 
 # middleware
 RUN apt-get update && \

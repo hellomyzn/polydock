@@ -1,14 +1,15 @@
 version: '3.6'
 services:
-  python3:
+  python:
     restart: always
     build:
       context: .
       dockerfile: ./infra/docker/python/Dockerfile
-    container_name: 'python3'
-    working_dir: '/home/myzn/'
+    container_name: 'python'
+    hostname: 'python'
+    working_dir: '/opt/work/'
     tty: true
     volumes:
-      - ./src/:/home/myzn/src
+      - ./src/:/opt/work
     environment:
       - TZ=Asia/Tokyo
