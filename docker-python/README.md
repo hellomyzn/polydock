@@ -28,3 +28,11 @@ $ docker compose exec python3 python src/sample.py
 # destroy (docker-compose down --rmi all --volumes --remove-orphans)
 $ make destroy
 ```
+
+
+### hoge
+How do I press and hold a key and have it repeat in VSCode?
+```
+$ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+
+```
