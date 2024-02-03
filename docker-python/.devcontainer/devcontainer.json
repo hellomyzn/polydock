@@ -14,6 +14,9 @@
                 "usernamehw.errorlens",
                 "oderwat.indent-rainbow",
                 "streetsidesoftware.code-spell-checker",
+                "mechatroner.rainbow-csv",
+                "mgesbert.python-path",
+                "KevinRose.vsc-python-indent",
                 "vscodevim.vim"
             ]
         }
