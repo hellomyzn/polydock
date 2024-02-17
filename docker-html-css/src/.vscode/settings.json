@@ -1,5 +1,4 @@
 {
-  "python.defaultInterpreterPath": "python",
   "editor.minimap.enabled": false, // ミニマップを非表示にする
   "breadcrumbs.enabled": true, // ファイルのパンくずリストを表示する
   "files.insertFinalNewline": true, // ファイルの末尾を改行で終わらせる
