@@ -15,6 +15,7 @@ services:
         target: /opt/work
     environment:
       - TZ=Asia/Tokyo
+      - LOG_LEVEL=INFO
     networks:
       - internal_network
 
