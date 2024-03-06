@@ -19,6 +19,8 @@ logs:
 	docker-compose logs
 python:
 	docker-compose exec python bash
+vscode:
+	docker-compose exec vscode bash
 start:
 	@make up
-
+	@make python

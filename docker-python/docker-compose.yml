@@ -13,3 +13,18 @@ services:
       - ./src/:/opt/work
     environment:
       - TZ=Asia/Tokyo
+  vscode:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./infra/docker/python/Dockerfile
+    container_name: 'vscode'
+    hostname: 'vscode'
+    working_dir: '/home/myzn/repo'
+    tty: true
+    volumes:
+      - type: bind
+        source: ./
+        target: /home/myzn/repo
+    environment:
+      - TZ=Asia/Tokyo
