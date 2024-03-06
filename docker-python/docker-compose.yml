@@ -1,26 +1,31 @@
 version: '3.6'
 services:
   python:
-    restart: always
     build:
       context: .
       dockerfile: ./infra/docker/python/Dockerfile
     container_name: 'python'
     hostname: 'python'
     working_dir: '/opt/work/'
+    restart: always
     tty: true
     volumes:
-      - ./src/:/opt/work
+      - type: bind
+        source: ./src
+        target: /opt/work
     environment:
       - TZ=Asia/Tokyo
+    networks:
+      - internal_network
+
   vscode:
-    restart: always
     build:
       context: .
       dockerfile: ./infra/docker/python/Dockerfile
     container_name: 'vscode'
     hostname: 'vscode'
     working_dir: '/home/myzn/repo'
+    restart: always
     tty: true
     volumes:
       - type: bind
@@ -28,3 +33,14 @@ services:
         target: /home/myzn/repo
     environment:
       - TZ=Asia/Tokyo
+
+  plantuml:
+    image: plantuml/plantuml-server
+    container_name: 'plantuml'
+    hostname: 'plantuml'
+    ports:
+      - target: 8080
+        published: ${PANTUML_PUBLISHED_PORT:-8080}
+
+networks:
+  internal_network:
