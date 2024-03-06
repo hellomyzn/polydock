@@ -16,13 +16,16 @@ RUN curl -sSL https://install.python-poetry.org | python3 && \
     poetry config virtualenvs.create false
 COPY ./src/pyproject.toml* ./src/poetry.lock* ./
 # install packages through poetry if there is a pyproject.toml
-RUN if [ -f pyproject.toml ]; then poetry install --no-dev; fi
+RUN if [ -f pyproject.toml ]; then poetry install; fi
 
 
 # middleware
 RUN apt-get update && \
     apt-get -y upgrade && \
     apt-get install -y \
+        curl \
+        iputils-ping \
+        net-tools \
         sudo \
         vim && \
     apt-get clean && \
