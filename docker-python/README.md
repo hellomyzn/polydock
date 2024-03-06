@@ -3,8 +3,10 @@ This is a my own broiler template for python.
 
 ### docker commands
 ```bash
-# build (docker-compose up -d --build)
+# run as production (docker-compose up -d --build)
 $ make up
+# run as develop (docker-compose -f docker-compose-dev.yml up -d --build)
+$ make dev
 # get into a container (docker-compose exec python bash)
 $ make python
 # down (docker-compose down)
