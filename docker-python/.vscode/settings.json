@@ -58,5 +58,10 @@
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     "plantuml.render": "PlantUMLServer",
-    "plantuml.server": "http://localhost:8080"
+    "plantuml.server": "http://localhost:8080",
+    "python.testing.pytestArgs": [
+        "./src/tests/"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
 }
