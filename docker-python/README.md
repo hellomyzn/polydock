@@ -1,38 +1,40 @@
 # docker-python-handson
-Based on https://qiita.com/jhorikawa_err/items/fb9c03c0982c29c5b6d5
+This is a my own broiler template for python.
 
-
-### Docker Command
-```
+### docker commands
+```bash
 # build (docker-compose up -d --build)
 $ make up
-
+# get into a container (docker-compose exec python bash)
+$ make python
 # down (docker-compose down)
 $ make down
-```
-
-### Into to container
-```
-# python3 server (docker-compose exec python3 bash)
-$ make python
-```
-
-### test
-```
-# Hello world
-$ docker compose exec python3 python src/sample.py
-```
-
-### Ruine the world
-```
 # destroy (docker-compose down --rmi all --volumes --remove-orphans)
 $ make destroy
 ```
 
-
-### hoge
-How do I press and hold a key and have it repeat in VSCode?
+### start
+1. run container
+```bash
+$ make up
 ```
-$ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
+2. reopen in container in vscode
+![start_vscode](./docs/images/start_vscode.png)
 
+3. set up [WakaTime](https://wakatime.com/) API key ([link](https://wakatime.com/settings/api-key))
+![wakatime_api_key](./docs/images/wakatime_api_key.png)
+
+### containers
+- python
+  - python container to exec
+- vscode
+  - for dev containers in vscode
+- plantuml
+  - for sequences
+
+
+### vscode settings
+How do I press and hold a key and have it repeat in VSCode?
+```bash
+$ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 ```
