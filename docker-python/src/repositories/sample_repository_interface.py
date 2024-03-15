@@ -1,4 +1,4 @@
-"""repositories.sample_interface"""
+"""repositories.sample_repository_interface"""
 #########################################################
 # Builtin packages
 #########################################################
@@ -7,13 +7,14 @@ import abc
 #########################################################
 # 3rd party packages
 #########################################################
+# (None)
 
 #########################################################
 # Own packages
 #########################################################
+# (None)
 
-
-class SampleRepoInterface(metaclass=abc.ABCMeta):
+class SampleRepositoryInterface(metaclass=abc.ABCMeta):
     def __init__(self):
         pass
 
