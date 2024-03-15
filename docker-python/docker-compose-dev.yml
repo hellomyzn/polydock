@@ -15,9 +15,9 @@ services:
         target: /opt/work
     environment:
       - TZ=Asia/Tokyo
+      - LOG_LEVEL=DEBUG
     networks:
       - internal_network
-      - LOG_LEVEL=DEBUG
 
   vscode:
     build:

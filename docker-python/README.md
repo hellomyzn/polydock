@@ -26,6 +26,11 @@ $ make up
 3. set up [WakaTime](https://wakatime.com/) API key ([link](https://wakatime.com/settings/api-key))
 ![wakatime_api_key](./docs/images/wakatime_api_key.png)
 
+4. copy `src/common/config/config.template.ini` to `src/common/config/config.ini`
+```bash
+cp src/common/config/config.template.ini src/common/config/config.ini
+```
+
 ### containers
 - python
   - python container to exec
