@@ -29,6 +29,7 @@ $ make up
 4. copy `src/common/config/config.template.ini` to `src/common/config/config.ini`
 ```bash
 cp src/common/config/config.template.ini src/common/config/config.ini
+cp src/common/config/config.template.ini src/common/config/config.dev.ini
 ```
 
 ### containers
