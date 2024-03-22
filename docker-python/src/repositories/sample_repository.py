@@ -12,9 +12,16 @@ from dataclasses import dataclass, field
 #########################################################
 # Own packages
 #########################################################
-# (None)
+from repositories import ModelAdapter
+from models import Sample
 
 
 @dataclass
 class SampleRepository(object):
     """sample repository"""
+    sample_adapter: ModelAdapter = ModelAdapter(Sample, {
+        "id": "id",
+        "hoge": "hoge",
+        "fuga": "fuga",
+        "piyo": "piyo"
+    })
