@@ -1,4 +1,9 @@
 # design
+- [design](#design)
+  - [sequences](#sequences)
+    - [preview current sequence](#preview-current-sequence)
+    - [export current sequence](#export-current-sequence)
+    - [errors](#errors)
 
 ## sequences
 you can use `plantuml` to make sequence not in dev container
