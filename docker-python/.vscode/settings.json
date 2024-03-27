@@ -3,13 +3,16 @@
     "breadcrumbs.enabled": true, // ファイルのパンくずリストを表示する
     "editor.minimap.enabled": false, // ミニマップを非表示にする
     "editor.renderLineHighlight": "all", // 選択行の行番号をハイライトする
-    "editor.defaultFormatter": "ms-python.autopep8", // 保存時に自動整形する
+    // "editor.defaultFormatter": "ms-python.autopep8", // 保存時に自動整形する
     "editor.formatOnSave": true,
     "editor.tabFocusMode": false,
     "files.trimFinalNewlines": true,
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     //python
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.autopep8"
+    },
     "python.autoComplete.extraPaths": [
         "/opt/poetry/venv/lib/python3.11/site-packages",
         // python -c "import site; print (site.getsitepackages())"
@@ -23,7 +26,10 @@
     "python.envFile": "${workspaceFolder}/.vscode/.env",
     "python.testing.unittestEnabled": false,
     "python.testing.pytestEnabled": true,
-    "autopep8.args": ["--max-line-length", "120"],
+    "autopep8.args": [
+        "--max-line-length",
+        "120"
+    ],
     "pylint.args": [
         "--max-line-length=120",
         // W0703: Catching too general exception %s
@@ -76,6 +82,5 @@
     "plantuml.server": "http://localhost:8080",
     "terminal.integrated.env.linux": {
         "LOG_LEVEL": "DEBUG"
-
     }
 }
