@@ -1,4 +1,3 @@
-
 """utils.datetime_parser"""
 #########################################################
 # Builtin packages
@@ -6,6 +5,7 @@
 import re
 from dataclasses import dataclass, field
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 #########################################################
 # 3rd party packages
@@ -15,7 +15,6 @@ from datetime import datetime
 #########################################################
 # Own packages
 #########################################################
-# (None)
 
 
 @dataclass
@@ -71,3 +70,41 @@ class DatetimeParser(object):
         datetime_ = yy_mm_dd_hh_mm_ss + fraction + time_zone
 
         return datetime.fromisoformat(datetime_).astimezone()
+
+    @classmethod
+    def decode_from_str_date(cls, datetime_: str | None = None) -> datetime | None:
+        """convert from str date(YYYY-MM-DD) to datetime
+
+        Args:
+            datetime_ (str | None, optional): only date (YYYY-MM-DD). Defaults to None.
+
+        Returns:
+            datetime | None: datetime
+        """
+        if datetime_ is None:
+            return None
+
+        datetime_ = datetime_.strip()
+
+        # validate datetime
+        if len(datetime_) != 10 or datetime_.find("-") == -1:
+            return None
+
+        year, month, day = datetime_.split("-")
+        time_zone = ZoneInfo("Asia/Tokyo")
+        dt = datetime(int(year), int(month), int(day), tzinfo=time_zone)
+        return dt
+
+    @classmethod
+    def encode_to_unix_timestamp(cls, datetime_: datetime | None = None) -> int | None:
+        """convert from datetime to unix timestamp (e.g. 1709218800)
+
+        Args:
+            datetime_ (datetime | None, optional): datetime. Defaults to None.
+
+        Returns:
+            int | None: unix timestamp (e.g. 1709218800)
+        """
+        if datetime_ is None:
+            return None
+        return int(datetime_.replace().timestamp())
