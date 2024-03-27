@@ -1,7 +1,7 @@
 FROM python:3.11
 
 # env
-ENV PYTHONPATH=/opt/work/
+ENV PYTHONPATH=/opt/work
 ENV POETRY_HOME=/opt/poetry
 ENV PIP_HOME=/opt/pip
 ENV PATH /home/${USER_NAME}/.local/bin/$PATH
