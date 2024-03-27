@@ -11,6 +11,7 @@
     - [Add](#add)
     - [Remove](#remove)
     - [Export requirements.txt](#export-requirementstxt)
+  - [Sphinx](#sphinx)
 
 
 ## Git
@@ -70,7 +71,7 @@ poetry add hoge
 poetry add hoge=3.0.1
 
 # development env
-poetry add --group dev hoge
+poetry add hoge --group dev
 ```
 ### Remove
 ```bash
@@ -79,4 +80,19 @@ poetry remove hoge
 ### Export requirements.txt
 ```bash
 ./tool/update-requirements.sh
+```
+
+## Sphinx
+to generate doc by sphinx in dev env
+1. change environment variables below in docker-compose-dev.yml
+  - `PROJECT_NAME`
+  - `SOURCE_VERSION`
+
+2. run dev container
+```
+make dev && make python
+```
+2. run the bash file in the container
+```bash
+./tools/generate-doc.sh
 ```
