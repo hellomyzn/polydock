@@ -39,26 +39,26 @@ COPY --chown=${UID}:${GID} ./src/requirements.txt ${PIP_HOME}
 COPY --chown=${UID}:${GID} ./src/requirements-dev.txt ${PIP_HOME}
 RUN chmod 755 /docker-entrypoint.sh
 
-# # poetry
-# # install path
-# RUN curl -sSL https://install.python-poetry.org | python3 && \
-#     cd /usr/local/bin && \
-#     ln -s /opt/poetry/bin/poetry && \
-#     # not create virtual env since it's in a container
-#     poetry config virtualenvs.create false
-# # install packages through poetry if there is a pyproject.toml
-# COPY --chown=${UID}:${GID} ./src/pyproject.toml* ./src/poetry.lock* ${POETRY_HOME}
-# RUN if [ -f ${POETRY_HOME}/pyproject.toml ]; then poetry install --directory=${POETRY_HOME}; fi
+# poetry
+# install path
+RUN curl -sSL https://install.python-poetry.org | python3 && \
+    cd /usr/local/bin && \
+    ln -s /opt/poetry/bin/poetry && \
+    # not create virtual env since it's in a container
+    poetry config virtualenvs.create false
+# install packages through poetry if there is a pyproject.toml
+COPY --chown=${UID}:${GID} ./src/pyproject.toml* ./src/poetry.lock* ${POETRY_HOME}
+RUN if [ -f ${POETRY_HOME}/pyproject.toml ]; then poetry install --directory=${POETRY_HOME}; fi
 
 # change exec user
 USER ${USER_NAME}
 
-# pip install
-WORKDIR /opt/work
-RUN python -m pip install  --no-cache-dir -r ${PIP_HOME}/requirements.txt --upgrade --user pip && \
-    pip install --no-cache-dir -r ${PIP_HOME}/requirements.txt
-RUN python -m pip install  --no-cache-dir -r ${PIP_HOME}/requirements-dev.txt --upgrade --user pip && \
-    pip install --no-cache-dir -r ${PIP_HOME}/requirements-dev.txt
+# # pip install
+# WORKDIR /opt/work
+# RUN python -m pip install  --no-cache-dir -r ${PIP_HOME}/requirements.txt --upgrade --user pip && \
+#     pip install --no-cache-dir -r ${PIP_HOME}/requirements.txt
+# RUN python -m pip install  --no-cache-dir -r ${PIP_HOME}/requirements-dev.txt --upgrade --user pip && \
+#     pip install --no-cache-dir -r ${PIP_HOME}/requirements-dev.txt
 
 # # If you want to just run one command, use below
 # ENTRYPOINT [ "/docker-entrypoint.sh" ]
