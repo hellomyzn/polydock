@@ -12,6 +12,8 @@
     - [Remove](#remove)
     - [Export requirements.txt](#export-requirementstxt)
   - [Sphinx](#sphinx)
+  - [SSH Stub](#ssh-stub)
+    - [Usage](#usage)
 
 
 ## Git
@@ -95,4 +97,23 @@ make dev && make python
 2. run the bash file in the container
 ```bash
 ./tools/generate-doc.sh
+```
+
+## SSH Stub
+`ssh-stub`コンテナ内で模擬したいコマンドがある場合、実行権限を付与したShell scriptを準備し`/usr/local/bin`はいかに配置することで動作させることができる。
+### Usage
+1. `infra/docker/ssh-stub/ssh/`配下に鍵を生成する
+```bash
+cd ./infra/docker/ssh-stub
+./key-gen.sh
+```
+2. 模擬したいコマンドを用意し、権限を付与する
+```bash
+vi ./infra/docker/ssh-stub/demo_scripts/docker
+chmod 755 ./infra/docker/ssh-stub/demo_scripts/docker
+```
+3.  `docker-compose-dev.yml`で`ssh-stub`コンテナ内の`/usr/local/bin/docker`にマウントする
+4. sshコマンドを実行する
+```bash
+ssh -i infra/docker/ssh-stub/ssh/id_rsa root@localhost -p 22222 'docker inspect vpc-gitlab -f "{{json .State.Status}}"'
 ```
