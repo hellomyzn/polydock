@@ -29,6 +29,16 @@ from common.exceptions import MyParamikoException
 def ssh_exec_command(ssh: paramiko.SSHClient, cmd: str) -> tuple[int, str, str]:
     """Execute command in ssh remote
 
+    Usage:
+        import os
+        host = os.getenv("SSH_HOST", "ssh-stub")
+        port = os.getenv("SSH_PORT", "22")
+        user = os.getenv("SSH_USER", "root")
+        path = os.getenv("SSH_KEY_PATH", "/opt/ssh/id_rsa")
+        command = 'docker inspect vpc-gitlab -f "{{json .State.Status}}"'
+        with ssh_connect(host, port, user, path) as ssh:
+            _, status, _ = ssh_exec_command(ssh, command)
+
     Args:
         ssh (paramiko.SSHClient): SSH Client
         cmd (str): command to execute
