@@ -24,6 +24,8 @@ python:
 	docker-compose exec python bash
 vscode:
 	docker-compose exec vscode bash
+ssh:
+	docker-compose exec ssh-stub bash
 start:
 	@make up
 	@make python
