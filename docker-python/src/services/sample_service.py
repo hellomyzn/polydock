@@ -12,9 +12,13 @@ from dataclasses import dataclass, field
 #########################################################
 # Own packages
 #########################################################
-# (None)
+from common.decorator import exception_module
 
 
 @dataclass
 class SampleService(object):
     """sample service"""
+
+    @exception_module
+    def sample(self):
+        pass
