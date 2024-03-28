@@ -5,6 +5,7 @@ ENV PYTHONPATH=/opt/work
 ENV DOCSPATH=/opt/docs
 ENV POETRY_HOME=/opt/poetry
 ENV PIP_HOME=/opt/pip
+ENV SSH_HOME=/opt/ssh
 ENV PATH /home/${USER_NAME}/.local/bin/$PATH
 
 # middleware
@@ -33,12 +34,14 @@ RUN groupadd -g ${GID} ${GROUP_NAME} && \
 RUN mkdir -p ${PYTHONPATH} && chown -R ${UID}:${GID} ${PYTHONPATH} && \
     mkdir -p ${DOCSPATH} && chown -R ${UID}:${GID} ${DOCSPATH} && \
     mkdir -p ${POETRY_HOME} && chown -R ${UID}:${GID} ${POETRY_HOME} && \
+    mkdir -p ${SSH_HOME} && chown -R ${UID}:${GID} ${SSH_HOME} && \
     mkdir -p ${PIP_HOME} && chown -R ${UID}:${GID} ${PIP_HOME}
 
 # copy files
 COPY --chown=${UID}:${GID} ./infra/docker/python/docker-entrypoint.sh /docker-entrypoint.sh
 COPY --chown=${UID}:${GID} ./docs/ ${DOCSPATH}
 COPY --chown=${UID}:${GID} ./src/requirements.txt ${PIP_HOME}
+COPY --chown=${UID}:${GID} ./infra/docker/ssh-stub/ssh/id_rsa ${SSH_HOME}
 COPY --chown=${UID}:${GID} ./src/requirements-dev.txt ${PIP_HOME}
 RUN chmod 755 /docker-entrypoint.sh
 

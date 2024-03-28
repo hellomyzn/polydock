@@ -3,6 +3,8 @@
 *poetry.lock
 *.bash_history
 
+infra/docker/ssh-stub/ssh/id*
+
 docs/sphinx/resources
 docs/sphinx/build
 
