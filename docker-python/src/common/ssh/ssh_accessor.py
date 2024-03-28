@@ -46,13 +46,50 @@ def ssh_exec_command(ssh: paramiko.SSHClient, cmd: str) -> tuple[int, str, str]:
         error(mes)
         raise MyParamikoException(mes) from exc
 
+    exit_code = __retrieve_exit_code(stdout, stderr)
+
+    std_out, std_err = __decode_exec_command_output(stdout, stderr)
+    info("Execute the command successfully. command: {0}, exit code: {1}, std_out: {2}, std_err: {3}",
+         cmd, exit_code, std_out, std_err)
+
+    return exit_code, std_out, std_err
+
+
+def __retrieve_exit_code(stdout: paramiko.ChannelFile, stderr: paramiko.ChannelStderrFile) -> int:
+    """retrieve exit code
+
+    Args:
+        stdout (paramiko.ChannelFile): standard output
+        stderr (paramiko.ChannelStderrFile): standard error
+
+    Raises:
+        MyParamikoException: SSH Exception Class
+
+    Returns:
+        int: exit code
+    """
     try:
         exit_code = stdout.channel.recv_exit_status()
     except Exception as exc:
         mes = f"Failed to get command exit status. stdout: {stdout}, stderr: {stderr}"
         error(mes)
         raise MyParamikoException(mes) from exc
+    return exit_code
 
+
+def __decode_exec_command_output(stdout: paramiko.ChannelFile, stderr: paramiko.ChannelStderrFile) -> tuple[str, str]:
+    """decode exec command output
+
+    Args:
+        stdout (paramiko.ChannelFile): standard output
+        stderr (paramiko.ChannelStderrFile): standard error
+
+    Raises:
+        MyParamikoException: SSH Exception Class
+
+    Returns:
+        tuple[str, str]: standard output text, standard error text
+    """
     try:
         std_out = stdout.read().decode("utf-8")
         std_err = stderr.read().decode("utf-8")
@@ -60,10 +97,8 @@ def ssh_exec_command(ssh: paramiko.SSHClient, cmd: str) -> tuple[int, str, str]:
         mes = f"Failed to get command execution result. stdout: {stdout}, stderr: {stderr}"
         error(mes)
         raise MyParamikoException(mes) from exc
-    info("Execute the command successfully. command: {0}, exit code: {1}, std_out: {2}, std_err: {3}",
-         cmd, exit_code, std_out, std_err)
 
-    return exit_code, std_out, std_err
+    return std_out, std_err
 
 
 @contextmanager
