@@ -20,3 +20,11 @@ class MyJsonDecodeException(MyException):
     Args:
         MyException (Exception): base class
     """
+
+
+class MyParamikoException(MyException):
+    """My paramiko exception
+
+    Args:
+        MyException (Exception): base class
+    """

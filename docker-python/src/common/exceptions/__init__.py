@@ -3,5 +3,6 @@
 from .my_exceptions import (
     MyException,
     MyRequestsException,
-    MyJsonDecodeException
+    MyJsonDecodeException,
+    MyParamikoException
 )
