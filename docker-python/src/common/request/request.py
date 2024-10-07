@@ -14,28 +14,11 @@ from tenacity import retry, stop_after_attempt, wait_fixed, RetryError
 # 開発パッケージ
 ##################################################
 from common.log import error, warn
+from common.retry import create_retry_decorator
 
 DEF_ATTEMPTS: Final[int] = 3
 DEF_WAIT_SEC: Final[int] = 10
 DEF_TIMEOUT_SEC: Final[int] = 60
-
-
-def create_retry_decorator(attempts: int, wait_sec: int, is_reraise: bool = False) -> Callable:
-    """ リトライデコレーターの作成
-
-    Args:
-        attempts (int): リトライ回数
-        wait_sec (int): リトライ間隔(秒)
-        is_reraise (bool): True: 発生した例外でraise / False: Retry Exceptionでraise
-
-    Returns:
-        tenacity: リトライデコレーター
-    """
-    return retry(
-        stop=stop_after_attempt(attempts),
-        wait=wait_fixed(wait_sec),
-        reraise=is_reraise
-    )
 
 
 def get(url: str, params: dict = None, headers: dict = None,
