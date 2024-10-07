@@ -7,7 +7,7 @@ RUN echo "root:password" | chpasswd
 RUN sed -i "s/#PasswordAuthentication yes/PasswordAuthentication no/g" /etc/ssh/sshd_config
 RUN sed -i "s/#PermitRootLogin prohibit-password/PermitRootLogin yes/" /etc/ssh/sshd_config
 
-RUN mkdir /root/.ssh
+RUN mkdir -p /root/.ssh
 RUN chmod 700 /root/.ssh
 
 RUN apt-get install -y sudo
