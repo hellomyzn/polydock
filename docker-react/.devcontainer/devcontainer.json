@@ -27,6 +27,8 @@
                 "sketchbuch.vsc-quokka-statusbar",
                 "xabikos.JavaScriptSnippets",
                 // Node
+                "humao.rest-client",
+                // React
                 "dsznajder.es7-react-js-snippets"
             ]
         }
