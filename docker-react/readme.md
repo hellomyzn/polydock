@@ -1,8 +1,11 @@
 # docker-react-handson
 Reactの実行環境用コンテナ
-コンテナ内での実行方法
+
+Reactプロジェクト作成と起動
 ```bash
-$ node someple.js
+$ npx create-react-app my-app
+$ cd my-app
+$ npm start
 ```
 
 ### Docker Command
