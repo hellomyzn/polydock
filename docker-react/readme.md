@@ -7,6 +7,12 @@ $ npx create-react-app my-app
 $ cd my-app
 $ npm start
 ```
+Nextプロジェクト作成と起動
+```bash
+$ npx create-next-app my-app
+$ cd my-app
+$ npm run dev
+```
 
 ### Docker Command
 ```
