@@ -9,8 +9,6 @@ apt-get install -y --no-install-recommends \
   locales-all
 apt-get clean
 rm -rf /var/lib/apt/lists/*
-
-curl https://get.volta.sh | bash
 END_OF_RUN
 
 # 日本語を使用可能にするロケールの設定(Dockerfile)
@@ -19,10 +17,15 @@ ENV LANG ja_JP.UTF-8
 # 作業ディレクトリの設定
 WORKDIR /app
 
+# VoltaをインストールしてNode.js環境をセットアップ
+RUN curl https://get.volta.sh | bash
+
 # Volta環境変数を設定
 ENV VOLTA_HOME=/root/.volta
 ENV PATH=$VOLTA_HOME/bin:$PATH
-     
-RUN  volta install node \
-  npm \
-  yarn
+
+# Node.js, npm, Yarnをインストール
+RUN volta install node npm yarn
+
+# 必要なポートを公開
+EXPOSE 3000

@@ -12,9 +12,6 @@ services:
       - type: bind
         source: ./src
         target: /app
-      - type: volume
-        source: node_modules
-        target: /app/my-app/node_modules
     ports:
       - target: 3000
         published: ${WEB_PUBLISHED_PORT:-3000}
@@ -22,6 +19,29 @@ services:
         mode: host
     environment:
       - TZ=Asia/Tokyo
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+  db:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: my-app
+      TZ: Asia/Tokyo
+    volumes:
+      - type: volume
+        source: postgres_data
+        target: /var/lib/postgresql/data
+    ports:
+      - target: 5432
+        published: 5432
+        protocol: tcp
+        mode: host
 
 volumes:
-  node_modules:
+  postgres_data:

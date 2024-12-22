@@ -9,8 +9,8 @@ $ npm start
 ```
 Nextプロジェクト作成と起動
 ```bash
-$ npx create-next-app my-app
-$ cd my-app
+$ npx create-next-app
+$ rm -rf /app/* && npx create-next-app@latest . --use-npm --no-ts --eslint
 $ npm run dev
 ```
 

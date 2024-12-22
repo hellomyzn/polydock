@@ -32,7 +32,7 @@
                 // React
                 "dsznajder.es7-react-js-snippets",
                 "biomejs.biome",
-                "Prisma.prisma:wakatime"
+                "Prisma.prisma"
             ]
         }
     }
