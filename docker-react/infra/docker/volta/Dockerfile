@@ -17,7 +17,7 @@ END_OF_RUN
 ENV LANG ja_JP.UTF-8
 
 # 作業ディレクトリの設定
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Volta環境変数を設定
 ENV VOLTA_HOME=/root/.volta
