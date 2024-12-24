@@ -32,7 +32,8 @@
                 // React
                 "dsznajder.es7-react-js-snippets",
                 "biomejs.biome",
-                "Prisma.prisma"
+                "Prisma.prisma",
+                "bradlc.vscode-tailwindcss"
             ]
         }
     }
