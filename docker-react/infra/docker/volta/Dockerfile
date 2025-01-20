@@ -15,7 +15,7 @@ END_OF_RUN
 ENV LANG ja_JP.UTF-8
 
 # 作業ディレクトリの設定
-WORKDIR /app
+WORKDIR /usr/src/app
 
 # VoltaをインストールしてNode.js環境をセットアップ
 RUN curl https://get.volta.sh | bash

@@ -6,12 +6,12 @@ services:
       dockerfile: ./Dockerfile
     container_name: react
     hostname: react
-    working_dir: /app
+    working_dir: /usr/src/app
     tty: true
     volumes:
       - type: bind
         source: ./
-        target: /app
+        target: /usr/src/app
     ports:
       - target: 3000
         published: ${WEB_PUBLISHED_PORT:-3000}
