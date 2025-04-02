@@ -1,59 +1,59 @@
-FROM python:3.11
+# ------------------------
+# 1. builder stage
+# ------------------------
+FROM python:3.11.9-slim-bullseye as builder
 
-# env
-ENV PYTHONPATH=/opt/work
-ENV POETRY_HOME=/opt/poetry
-ENV PIP_HOME=/opt/pip
-ENV PATH /home/${USER_NAME}/.local/bin/$PATH
+ARG PROJECT_DIR
+ARG PKG="libopencv-dev curl"
+
+WORKDIR /app
 
 # middleware
-RUN apt-get update && \
-    apt-get -y upgrade && \
-    apt-get install -y \
-        curl \
-        sudo \
-        vim && \
+RUN apt-get update -q && \
+    apt-get -y install --no-install-recommends ${PKG} && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# add user
-ARG USER_NAME=myzn
-ARG GROUP_NAME=myzn
-ARG UID=1000
-ARG GID=1000
+# Poetry & pip upgrade
+RUN pip install --upgrade pip
+RUN pip install poetry --no-cache-dir
+# virtualenvは無効化
+RUN poetry config virtualenvs.create false
+
+# コピーして依存関係だけインストール
+COPY ${PROJECT_DIR}/pyproject.toml ${PROJECT_DIR}/poetry.lock ./
+RUN if [ -f pyproject.toml ]; then poetry install --no-root; fi
+
+# ------------------------
+# 2. final stage
+# ------------------------
+FROM python:3.11.9-slim-bullseye as dev
+
+ARG USER_NAME
+ARG GROUP_NAME
+ARG UID
+ARG GID
+ARG WORKDIR
+
+RUN mkdir -p ${WORKDIR}
+WORKDIR ${WORKDIR}
+
+ENV TZ=${TZ}
+ENV PATH=/home/${USER_NAME}/.local/bin:$PATH
+
+# 任意: ユーザー作成
 RUN groupadd -g ${GID} ${GROUP_NAME} && \
     useradd -lm -s /bin/bash -u ${UID} -g ${GID} -G sudo ${USER_NAME} && \
     echo "${USER_NAME}:password" | chpasswd && \
     echo "${USER_NAME} ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
 
-# make dirs
-RUN mkdir -p ${PYTHONPATH} && chown -R ${UID}:${GID} ${PYTHONPATH} && \
-    mkdir -p ${POETRY_HOME} && chown -R ${UID}:${GID} ${POETRY_HOME} && \
-    mkdir -p ${PIP_HOME} && chown -R ${UID}:${GID} ${PIP_HOME}
-
-# copy files
 COPY --chown=${UID}:${GID} ./infra/docker/python/docker-entrypoint.sh /docker-entrypoint.sh
-COPY --chown=${UID}:${GID} ./src/requirements.txt ${PIP_HOME}
 RUN chmod 755 /docker-entrypoint.sh
 
-# poetry
-# install path
-RUN curl -sSL https://install.python-poetry.org | python3 && \
-    cd /usr/local/bin && \
-    ln -s /opt/poetry/bin/poetry && \
-    # not create virtual env since it's in a container
-    poetry config virtualenvs.create false
-# install packages through poetry if there is a pyproject.toml
-COPY --chown=${UID}:${GID} ./src/pyproject.toml* ./src/poetry.lock* ${POETRY_HOME}
-RUN if [ -f ${POETRY_HOME}/pyproject.toml ]; then poetry install --without=dev --directory=${POETRY_HOME}; fi
+# copy site-packages only
+COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages
 
-# change exec user
 USER ${USER_NAME}
 
-# # pip install
-# WORKDIR /opt/work
-# RUN python -m pip install  --no-cache-dir -r ${PIP_HOME}/requirements.txt --upgrade --user pip && \
-#     pip install --no-cache-dir -r ${PIP_HOME}/requirements.txt
-
-# # If you want to just run one command, use below
-# ENTRYPOINT [ "/docker-entrypoint.sh" ]
+# If you want to just run one command, use below
+# ENTRYPOINT [ "/docker-entrypoint.sh" ]_
