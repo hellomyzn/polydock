@@ -3,15 +3,15 @@ Reactの実行環境用コンテナ
 
 Reactプロジェクト作成と起動
 ```bash
-$ npx create-react-app my-app
-$ cd my-app
+$ npx create-react-app .
 $ npm start
 ```
+
 Nextプロジェクト作成と起動
 ```bash
-$ npx create-next-app
-$ rm -rf /app/* && npx create-next-app@latest . --use-npm --no-ts --eslint
-$ npm run dev
+rm -rf /home/myzn/app/src/* && 
+npx create-next-app@latest .
+npm run dev
 ```
 
 ### Docker Command
