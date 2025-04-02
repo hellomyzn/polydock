@@ -82,7 +82,7 @@
         "yzhang"
     ],
     "plantuml.render": "PlantUMLServer",
-    "plantuml.server": "http://localhost:8080",
+    "plantuml.server": "http://plantuml:8080",
     "terminal.integrated.env.linux": {
         "LOG_LEVEL": "DEBUG"
     }
