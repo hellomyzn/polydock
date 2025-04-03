@@ -63,12 +63,6 @@ Read the full story on Qiita 👉
 
 ---
 
-## 🙌 License
-
-MIT
-
----
-
 ## 🐳 Author
 
 Created with love by [@hellomyzn](https://github.com/hellomyzn)
