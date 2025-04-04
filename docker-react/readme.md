@@ -1,44 +1,79 @@
-# docker-react-handson
-Reactの実行環境用コンテナ
+# 📦 Docker React App
 
-Reactプロジェクト作成と起動
+This repository provides a Docker-based environment for running a **Next.js** application in **production**.
+
+---
+
+## 🚀 Quick Start
+
+### 1. Set up environment variables (optional)
+
 ```bash
-$ npx create-react-app .
-$ npm start
+cp .env.template .env
 ```
 
-Nextプロジェクト作成と起動
+You can customize options in `.env` if needed.
+
+---
+
+### 2. Build and Start the Production Container
+
 ```bash
-rm -rf /home/myzn/app/src/* && 
-npx create-next-app@latest .
-npm run dev
+make up
 ```
 
-### Docker Command
-```
-# build (docker-compose up -d --build)
-$ make up
+This will build the Docker image and start the container.
 
-# down (docker-compose down)
-$ make down
-```
+The app will be accessible at:
 
-### Into to container
 ```
-# Javascript server (docker-compose exec js bash)
-$ make node
+http://localhost:3000
 ```
 
+---
 
-### Ruine the world
+## 🛠️ Useful Commands
+
+| Command     | Description                          |
+|:------------|:-------------------------------------|
+| `make up`   | Build and start the production server |
+| `make down` | Stop and remove the container         |
+
+---
+
+## 📂 Project Structure
+
 ```
-# destroy (docker-compose down --rmi all --volumes --remove-orphans)
-$ make destroy
+/project_root
+├── .devcontainer/   # DevContainer environment (development only)
+├── infra/docker/    # Dockerfiles and infrastructure configs
+├── src/             # Next.js project
+├── docker-compose.yml
+├── Makefile
+└── README.md (this file)
 ```
 
+---
 
-### hoge
-How do I press and hold a key and have it repeat in VSCode?
+## 📚 For Development
+
+If you want to use a **DevContainer** for active development (with hot reload, flexible environment, etc.), please refer to:
+
+📖 `.devcontainer/README.md`
+
+It explains how to:
+- Create the Next.js app inside the container
+- Use `make create` / `make dev` for development
+- Reopen VSCode in container
+
+---
+
+## ⚙️ Notes
+- Production image uses **Ubuntu 22.04** base with minimal setup.
+- Only **production dependencies** are installed inside the container.
+- The Next.js app is built during Docker image creation (`npm run build`).
+- The server runs using `next start`.
+- How do I press and hold a key and have it repeat in VSCode?
 ```
 $ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false
 

@@ -1,31 +1,31 @@
-# syntax=docker/dockerfile:1-labs                                                                                                           
-FROM debian:stable-slim
+FROM ubuntu:22.04
 
-RUN <<END_OF_RUN
-apt-get update
-apt-get install -y --no-install-recommends \
-  curl \
-  ca-certificates \
-  locales-all
-apt-get clean
-rm -rf /var/lib/apt/lists/*
-END_OF_RUN
+# 最低限必要なパッケージだけ
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends curl ca-certificates sudo gnupg && \
+    rm -rf /var/lib/apt/lists/*
 
-# 日本語を使用可能にするロケールの設定(Dockerfile)
-ENV LANG ja_JP.UTF-8
+# Node.js 20インストール
+RUN curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash - && \
+    apt-get update && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
 
-# 作業ディレクトリの設定
-WORKDIR /usr/src/app
+WORKDIR /app
 
-# VoltaをインストールしてNode.js環境をセットアップ
-RUN curl https://get.volta.sh | bash
+# src/配下からpackage.jsonだけ拾う
+COPY src/package*.json ./
 
-# Volta環境変数を設定
-ENV VOLTA_HOME=/root/.volta
-ENV PATH=$VOLTA_HOME/bin:$PATH
+RUN npm install --omit=dev
 
-# Node.js, npm, Yarnをインストール
-RUN volta install node npm yarn
+# src/配下をまるっとコピー
+COPY src/. .
 
-# 必要なポートを公開
+# Next.jsビルド
+RUN npm run build
+
+# ポート開放
 EXPOSE 3000
+
+# アプリ起動
+CMD ["npm", "run", "start"]
