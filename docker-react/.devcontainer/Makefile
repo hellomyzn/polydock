@@ -24,4 +24,4 @@ logs:
 dev:
 	docker compose ${DOCKER_COMPOSE_FILE_PATH} ${PROJECT_FLAG} exec ${USER_FLAG} workspace bash -c 'cd ${WORKDIR}/src && npm run dev'
 build-export:
-	docker compose ${DOCKER_COMPOSE_FILE_PATH} ${PROJECT_FLAG} exec ${USER_FLAG} workspace bash -c 'cd ${WORKDIR}/src && npm run build && npm run export'
+	docker compose ${DOCKER_COMPOSE_FILE_PATH} ${PROJECT_FLAG} exec ${USER_FLAG} workspace bash -c 'cd ${WORKDIR}/src && npm run build && npx next export'
