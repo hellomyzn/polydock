@@ -22,7 +22,7 @@ RUN poetry config virtualenvs.create false
 
 # コピーして依存関係だけインストール
 COPY ${PROJECT_DIR}/pyproject.toml ${PROJECT_DIR}/poetry.lock ./
-RUN if [ -f pyproject.toml ]; then poetry install --no-root; fi
+RUN if [ -f pyproject.toml ]; then poetry install --no-root --with dev; fi
 
 # ------------------------
 # 2. final stage
