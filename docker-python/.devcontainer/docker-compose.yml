@@ -37,6 +37,9 @@ services:
       - type: bind
         source: ../
         target: ${WORKDIR-/opt/work}
+      - type: bind
+        source: ../.vscode
+        target: /opt/.vscode
     networks:
       - internal_network_dev
 
