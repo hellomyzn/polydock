@@ -16,13 +16,25 @@ cp .env.template .env
 
 ---
 
-### 2. Open the container in VSCode
+### 2. Change `PROJECT_NAME` 
+Change `PROJECT_NAME` in `.devcontainer/.env` and value of name in`.devcontainer/devcontainer.json`
+```.env
+PROJECT_NAME=<PROJECT_NAME>
+...
+```
+```json
+{
+  "name": "<PROJECT_NAME>",
+  ...
+```
+
+### 3. Open the container in VSCode
 
 VSCode で `Reopen in Container` を選択すると DevContainer が立ち上がります。
 
 ---
 
-### 3. Run the application
+### 4. Run the application
 
 ```bash
 make dev
@@ -51,4 +63,5 @@ make dev
 - `.env` 内でポートやユーザー ID を変更できます。
 - VSCode で Go 拡張機能を利用するとコード補完が有効になります。
 - PostgreSQL を利用する場合は `.devcontainer/docker-compose.yml` の `postgres` サービスをコメント解除し、MySQL を無効にしてから `make down` で再起動してください。`workspace` サービスの `depends_on` も忘れずに切り替えます。
+
 
