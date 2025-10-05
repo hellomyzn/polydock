@@ -1,27 +1,24 @@
 up:
-	docker-compose up -d --build
+        docker compose up -d --build
 build:
-	docker-compose build --no-cache --force-rm
+        docker compose build --no-cache --force-rm
 stop:
-	docker-compose stop
+        docker compose stop
 down:
-	docker-compose down
+        docker compose down
 restart:
-	@make down
-	@make up
+        @make down
+        @make up
 destroy:
-	docker-compose down --rmi all --volumes --remove-orphans 
+        docker compose down --rmi all --volumes --remove-orphans
 destroy-volumes:
-	docker-compose down --volumes
+        docker compose down --volumes
 ps:
-	docker-compose ps
+        docker compose ps
 logs:
-	docker-compose logs
-react:
-	docker-compose exec react bash
-db:
-	docker-compose exec db bash
+        docker compose logs
+go:
+        docker compose exec go bash
 start:
-	@make up
-	@make react
-
+        @make up
+        @make go

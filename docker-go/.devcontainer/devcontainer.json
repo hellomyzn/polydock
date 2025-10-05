@@ -1,22 +1,27 @@
 {
-    "name": "go container",                    // VScodeがコンテナに接続したときのタイトルを自由に設定
-    "dockerComposeFile": "docker-compose.yml",  // docker-conpose.ymlファイルを指定
-    "service": "workspace",                        // docker-conpose.ymlファイル内に記載したサービス名を指定
-    "workspaceFolder": "/home/myzn/app",         // VScode接続時に開くフォルダを指定
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                // Basic
-                "WakaTime.vscode-wakatime",
-                "oderwat.indent-rainbow",
-                "streetsidesoftware.code-spell-checker",
-                "vscodevim.vim",
-                "esbenp.prettier-vscode",
-                "Gruntfuggly.todo-tree",
-                "eamodio.gitlens",
-                "mikestead.dotenv",
-                "GitHub.vscode-github-actions"
-            ]
-        }
+  "name": "docker-go",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "workspace",
+  "workspaceFolder": "/home/myzn/workspace",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        // Basic
+        "WakaTime.vscode-wakatime",
+        "oderwat.indent-rainbow",
+        "streetsidesoftware.code-spell-checker",
+        "vscodevim.vim",
+        "esbenp.prettier-vscode",
+        "Gruntfuggly.todo-tree",
+        "eamodio.gitlens",
+        "mikestead.dotenv",
+        "GitHub.vscode-github-actions",
+
+        // go
+        "golang.go",
+        "ms-azuretools.vscode-docker",
+        "streetsidesoftware.code-spell-checker"
+      ]
     }
+  }
 }

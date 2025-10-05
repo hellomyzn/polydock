@@ -1,6 +1,6 @@
-# 📦 Docker Dev Environment for Next.js
+# 📦 Docker Dev Environment for Go
 
-This repository provides a **DevContainer-based** Docker environment for Next.js development.
+Go 向けの DevContainer 環境です。VSCode の Dev Containers 機能を利用して、ホットリロードしながら開発できます。
 
 ---
 
@@ -12,75 +12,43 @@ This repository provides a **DevContainer-based** Docker environment for Next.js
 cp .env.template .env
 ```
 
-You can customize options in `.env` if needed.
+必要であれば `.env` を編集してポートやユーザー設定を変更します。
 
 ---
 
-### 2. Create a Next.js project
+### 2. Open the container in VSCode
 
-```bash
-make create
-```
-
-This will generate a fresh Next.js project under `/src` inside the container.
+VSCode で `Reopen in Container` を選択すると DevContainer が立ち上がります。
 
 ---
 
-### 3. Open the container in VSCode
-
-Click **"Reopen in Container"** in VSCode.
-
-This will start the DevContainer automatically.
-
----
-
-### 4. Start the development server
+### 3. Run the application
 
 ```bash
 make dev
 ```
 
-The app will start on:
-
-```
-http://localhost:3000
-```
+`http://localhost:8080` で Go の HTTP サーバーが確認できます。
 
 ---
 
 ## 🛠️ Useful Commands
 
-| Command       | Description                                   |
-| :------------ | :-------------------------------------------- |
-| `make create` | Create a new Next.js project (one-time setup) |
-| `make dev`    | Start the development server                  |
-| `make down`   | Stop the containers                           |
+| Command     | Description                                   |
+| :---------- | :-------------------------------------------- |
+| `make dev`  | `go run ./cmd/server` を実行します             |
+| `make build`| `go build ./...` を実行します                 |
+| `make down` | DevContainer 用コンテナを停止します           |
+| `make exec` | コンテナにシェルで入ります                    |
+| `make mysql` | mysql dbに入ります                    |
+| `make psql` | postgres dbに入ります                    |
 
 ---
 
 ## ⚙️ Notes
 
-- This environment uses **Volta** for managing Node.js and npm versions.
-- All configurations (port, working directories, options for create-next-app) can be modified in `.env`.
+- ベースイメージは `golang:1.22-bullseye` を使用しています。
+- `.env` 内でポートやユーザー ID を変更できます。
+- VSCode で Go 拡張機能を利用するとコード補完が有効になります。
+- PostgreSQL を利用する場合は `.devcontainer/docker-compose.yml` の `postgres` サービスをコメント解除し、MySQL を無効にしてから `make down` で再起動してください。`workspace` サービスの `depends_on` も忘れずに切り替えます。
 
----
-
-## 📂 .env Configuration
-
-The `.env` file contains the following environment variables:
-
-| Variable                                | Description                                    |
-| :-------------------------------------- | :--------------------------------------------- |
-| `PROJECT_NAME`                          | Name of the Docker container project           |
-| `USER_NAME`, `GROUP_NAME`, `UID`, `GID` | Linux user settings inside the container       |
-| `PROJECT_DIR`, `WORKDIR`, `VOLTA_HOME`  | Directory paths for workspace setup            |
-| `WEB_PUBLISHED_PORT`                    | Port for the Next.js dev server (default 3000) |
-| `PRISMA_STUDIO_PUBLISHED_PORT`          | Port for Prisma Studio (default 5555)          |
-| `DB_PUBLISHED_PORT`                     | Database port if needed (default 5432)         |
-| `CNA_USE_TYPESCRIPT`                    | Whether to use TypeScript in the project       |
-| `CNA_USE_ESLINT`                        | Whether to use ESLint                          |
-| `CNA_USE_TAILWIND`                      | Whether to use Tailwind CSS                    |
-| `CNA_USE_SRC_DIR`                       | Whether to use `src/` directory structure      |
-| `CNA_USE_APP_ROUTER`                    | Whether to use App Router (Next.js 13+)        |
-| `CNA_USE_TURBOPACK`                     | Whether to use Turbopack                       |
-| `CNA_CUSTOMIZE_ALIAS`                   | Whether to customize the import alias          |

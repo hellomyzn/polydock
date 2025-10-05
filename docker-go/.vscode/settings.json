@@ -1,12 +1,20 @@
 {
-  "editor.minimap.enabled": false, // ミニマップを非表示にする
-  "breadcrumbs.enabled": true, // ファイルのパンくずリストを表示する
-  "files.insertFinalNewline": true, // ファイルの末尾を改行で終わらせる
-  "editor.renderLineHighlight": "all", // 選択行の行番号をハイライトする
-  "cSpell.ignoreWords": ["hoge"],
+  "editor.minimap.enabled": false,
+  "breadcrumbs.enabled": true,
+  "files.insertFinalNewline": true,
+  "editor.renderLineHighlight": "all",
+  "cSpell.ignoreWords": [
+    "hoge",
+    "myzn",
+    "psql"
+  ],
   "cSpell.words": [],
-  "editor.formatOnSave": true,
+  "editor.tabSize": 4,
+  "files.autoSave": "off",
   "editor.tabFocusMode": false,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "files.autoSave": "off"
+  "go.formatTool": "gofmt",
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.formatOnSave": true
+  }
 }
