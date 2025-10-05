@@ -1,26 +1,26 @@
-version: "3.9"
+version: '3.9'
 
 services:
-  app:
-    container_name: ${PROJECT_NAME:-default}
-    hostname: ${PROJECT_NAME:-default}
+  go:
     build:
       context: .
-      dockerfile: ./infra/docker/volta/Dockerfile
-    ports:
-      - target: 3000
-        published: ${WEB_PUBLISHED_PORT:-3000}
-        protocol: tcp
-        mode: host
-    working_dir: ${WORKDIR-/app}
+      dockerfile: ./infra/docker/go/Dockerfile
+    container_name: ${PROJECT_NAME:-docker-go}
+    hostname: ${PROJECT_NAME:-docker-go}
+    working_dir: /go/src/app
     tty: true
-    restart: always
+    restart: unless-stopped
     env_file:
       - .env
     ports:
-      - target: 3000
-        published: ${WEB_PUBLISHED_PORT:-3000}
+      - target: 8080
+        published: ${APP_PORT:-8080}
         protocol: tcp
         mode: host
+    volumes:
+      - type: bind
+        source: ./src
+        target: /go/src/app
     environment:
-      - NODE_ENV=production
+      - TZ=${TZ-Asia/Tokyo}
+      - GO_ENV=${GO_ENV-development}

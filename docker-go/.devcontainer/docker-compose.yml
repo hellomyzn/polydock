@@ -1,7 +1,7 @@
 services:
   workspace:
-    container_name: ${PROJECT_NAME:-default}-vscode
-    hostname: ${PROJECT_NAME:-default}
+    container_name: ${PROJECT_NAME:-docker-go}-vscode
+    hostname: ${PROJECT_NAME:-docker-go}
     build:
       context: ..
       dockerfile: .devcontainer/infra/docker/go/Dockerfile
@@ -10,27 +10,21 @@ services:
         GROUP_NAME: ${GROUP_NAME-myzn}
         UID: ${UID-1000}
         GID: ${GID-1000}
-        PROJECT_DIR: ${PROJECT_DIR-..}
-        WORKDIR: ${WORKDIR-/home/myzn/app}
-    working_dir: ${WORKDIR-/home/myzn/app}
+        WORKDIR: ${WORKDIR-/home/myzn/workspace}
+        TZ: ${TZ-Asia/Tokyo}
+    working_dir: ${WORKDIR-/home/myzn/workspace}
     tty: true
-    restart: always
+    restart: unless-stopped
     env_file:
       - .env
     volumes:
       - type: bind
         source: ..
-        target: ${WORKDIR-/home/myzn/app}
+        target: ${WORKDIR-/home/myzn/workspace}
     ports:
-      - target: 3000
-        published: ${WEB_PUBLISHED_PORT:-3000}
+      - target: 8080
+        published: ${APP_PORT:-8080}
         protocol: tcp
         mode: host
     environment:
-      - TZ=Asia/Tokyo
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-
+      - TZ=${TZ-Asia/Tokyo}

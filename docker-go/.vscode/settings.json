@@ -1,12 +1,13 @@
 {
-  "editor.minimap.enabled": false, // ミニマップを非表示にする
-  "breadcrumbs.enabled": true, // ファイルのパンくずリストを表示する
-  "files.insertFinalNewline": true, // ファイルの末尾を改行で終わらせる
-  "editor.renderLineHighlight": "all", // 選択行の行番号をハイライトする
-  "cSpell.ignoreWords": ["hoge"],
-  "cSpell.words": [],
-  "editor.formatOnSave": true,
-  "editor.tabFocusMode": false,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "files.autoSave": "off"
+  "editor.minimap.enabled": false,
+  "breadcrumbs.enabled": true,
+  "files.insertFinalNewline": true,
+  "editor.renderLineHighlight": "all",
+  "editor.tabSize": 2,
+  "files.autoSave": "off",
+  "go.formatTool": "gofmt",
+  "[go]": {
+    "editor.defaultFormatter": "golang.go",
+    "editor.formatOnSave": true
+  }
 }
