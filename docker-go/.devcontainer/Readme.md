@@ -48,3 +48,5 @@ make dev
 - ベースイメージは `golang:1.22-bullseye` を使用しています。
 - `.env` 内でポートやユーザー ID を変更できます。
 - VSCode で Go 拡張機能を利用するとコード補完が有効になります。
+- PostgreSQL を利用する場合は `.devcontainer/docker-compose.yml` の `postgres` サービスをコメント解除し、MySQL を無効にしてから `make down` で再起動してください。`workspace` サービスの `depends_on` も忘れずに切り替えます。
+
