@@ -3,8 +3,13 @@
   "breadcrumbs.enabled": true,
   "files.insertFinalNewline": true,
   "editor.renderLineHighlight": "all",
-  "editor.tabSize": 2,
+  "cSpell.ignoreWords": [
+    "hoge"
+  ],
+  "cSpell.words": [],
+  "editor.tabSize": 4,
   "files.autoSave": "off",
+  "editor.tabFocusMode": false,
   "go.formatTool": "gofmt",
   "[go]": {
     "editor.defaultFormatter": "golang.go",
