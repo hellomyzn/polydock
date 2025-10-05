@@ -40,6 +40,8 @@ make dev
 | `make build`| `go build ./...` を実行します                 |
 | `make down` | DevContainer 用コンテナを停止します           |
 | `make exec` | コンテナにシェルで入ります                    |
+| `make mysql` | mysql dbに入ります                    |
+| `make psql` | postgres dbに入ります                    |
 
 ---
 

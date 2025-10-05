@@ -4,7 +4,9 @@
   "files.insertFinalNewline": true,
   "editor.renderLineHighlight": "all",
   "cSpell.ignoreWords": [
-    "hoge"
+    "hoge",
+    "myzn",
+    "psql"
   ],
   "cSpell.words": [],
   "editor.tabSize": 4,
