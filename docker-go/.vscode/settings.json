@@ -16,5 +16,11 @@
   "[go]": {
     "editor.defaultFormatter": "golang.go",
     "editor.formatOnSave": true
-  }
+  },
+  // markdown
+  "[markdown]": {
+      "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "plantuml.render": "PlantUMLServer",
+  "plantuml.server": "http://plantuml:8080",
 }

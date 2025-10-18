@@ -17,6 +17,12 @@
         "mikestead.dotenv",
         "GitHub.vscode-github-actions",
 
+        // editor
+        "vscodevim.vim",
+        "yzhang.markdown-all-in-one",
+        "shd101wyy.markdown-preview-enhanced",
+        "jebbs.plantuml",
+
         // go
         "golang.go",
         "ms-azuretools.vscode-docker",

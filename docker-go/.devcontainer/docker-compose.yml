@@ -34,6 +34,16 @@ services:
     #   # postgres:
     #   #   condition: service_healthy
 
+  plantuml:
+    build:
+      context: ..
+      dockerfile: .devcontainer/infra/docker/plantuml/Dockerfile
+    container_name: 'plantuml'
+    hostname: 'plantuml'
+    ports:
+      - target: 8080
+        published: ${PANTUML_PUBLISHED_PORT:-8080}
+
 # mysql:
 #   image: mysql:8.0
 #   container_name: ${PROJECT_NAME:-docker-go}-vscode-mysql
