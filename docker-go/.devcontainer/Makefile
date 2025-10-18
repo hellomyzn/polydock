@@ -1,4 +1,4 @@
-nclude .env
+include .env
 export $(shell sed 's/=.*//' .env)
 
 DOCKER_COMPOSE_FILE_PATH=-f docker-compose.yml
