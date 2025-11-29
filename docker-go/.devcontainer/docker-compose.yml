@@ -42,7 +42,7 @@ services:
     hostname: 'plantuml'
     ports:
       - target: 8080
-        published: ${PANTUML_PUBLISHED_PORT:-8080}
+        published: ${PANTUML_PUBLISHED_PORT:-8081}
 
 # mysql:
 #   image: mysql:8.0
