@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM golang:1.22-bullseye
+FROM golang:1.25-bullseye
 
 WORKDIR /go/src/app
 
