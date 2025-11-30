@@ -16,4 +16,4 @@ RUN go build -o bin/server ./cmd/server
 
 EXPOSE 8080
 
-CMD ["/go/src/app/bin/server"]
+# CMD ["/go/src/app/bin/server"]
